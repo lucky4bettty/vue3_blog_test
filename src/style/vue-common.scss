@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ecf0f4;
+    font-family: Microsoft JhengHei, 微軟正黑體, "San Francisco", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+// 以上為初始化
+
+.logo{
+    height: 50px;
+  }
+
+.navbar{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(23, 27, 241);
+    color:white;
+    height: 50px;
+    .navbar_left{
+        ul{
+            height: 100%;
+        }
+
+        li{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            
+        }
+    }
+
+    .navbar_right a{
+        margin-left: 5px;
+        color: white;
+    }
+}
+
+ul , li {
+    list-style:none;
+}
