@@ -1,8 +1,73 @@
 .home{
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: calc(100vh - 80px);
 }
 
-.article_all{
+.home_cont{
     width: 80%;
+    margin-top: 10px;
+    h2{
+        font-size: 26px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .article_all{
+        //background-color: rgb(255, 255, 255);
+        border-top: 2px rgb(23, 27, 241) solid;
+        .article_one{
+            display: flex;
+            border-left: 1px rgb(190, 190, 190) solid ;
+            border-right: 1px rgb(190, 190, 190) solid ;
+            border-bottom: 1px rgb(190, 190, 190) solid ;
+            background-color: rgb(255, 255, 255);
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        // 回覆＋最愛
+        .article_like ,.article_reply{
+            display: flex;
+            flex-direction:column;
+            justify-content:  center;
+            align-items:  center ;
+            width: 60px;
+            height: 60px;
+
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 10px;
+            
+        }
+
+        .article_reply{
+            border: 2px solid orange;
+            color: orange;
+            
+        }
+
+        // 以下文章
+        .article{
+            padding-left: 20px;
+            padding-right: 20px;
+            
+            
+        }
+        .article_title{
+            font-size: 20px;
+        }
+        // 目前用不到
+        .article_cont{
+            font-size: 12px;
+            overflow:hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .article_author {
+            font-size: 12px;
+        }
+    }
+
 }
+
