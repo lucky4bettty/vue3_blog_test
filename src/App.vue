@@ -6,7 +6,7 @@
 
   <div>
     <!-- logo+個人資料連結 -->
-    <div class="d-flex justify-content-between">
+    <div class="logo_all d-flex justify-content-between">
 
       <div class="">
         <router-link to="/">
@@ -36,7 +36,7 @@
       <div class="navbar_right">
         <img src="@/images/icon-search.svg" />
         <span>
-          <router-link to="/about">登入 / 註冊</router-link>
+          <router-link to="/login">登入 / 註冊</router-link>
         </span>
       </div>
 

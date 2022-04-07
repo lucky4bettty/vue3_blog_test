@@ -64,16 +64,17 @@
 
         </div>
         <!-- 頁數 -->
-        <el-button class="el-button--base datePickBtn" plain round >本月</el-button>
+        <div class="page">
+          <el-pagination
+          v-model:currentPage="currentPage"
+          :page-size="10"
+          layout="prev, pager, next, jumper"
+          :total="pc_dataPage"
+          @current-change="handleCurrentChange"
+          >
+          </el-pagination>
+        </div>
 
-        <el-pagination
-        v-model:currentPage="currentPage"
-        :page-size="10"
-        layout="prev, pager, next, jumper"
-        :total="pc_dataPage"
-        @current-change="handleCurrentChange"
-        >
-        </el-pagination>
 
       </div>
   </div>

@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #dbdbdb;
+    background-color: #d8d8d8;
     font-family: Microsoft JhengHei, 微軟正黑體, "San Francisco", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -24,10 +24,14 @@ body {
 }
 
 // 以上為初始化
-
+// navbar 相關
 .logo{
     height: 50px;
   }
+
+.logo_all{
+    background-color: white;
+}
 
 .navbar{
     padding-left: 20px;
@@ -59,4 +63,9 @@ body {
 
 ul , li {
     list-style:none;
+}
+
+// 共用元件
+.el-button{
+    width: 160px;
 }

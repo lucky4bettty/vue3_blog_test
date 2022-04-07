@@ -14,3 +14,5 @@ import 'element-plus/dist/index.css'
 const app = createApp(App)
 window.jQuery = window.$ = $;
 app.use(ElementPlus, {locale: zhTw}).use(store).use(router).use(VueAxios, axios).mount("#app");
+
+import "@/style/vue-common.scss";
