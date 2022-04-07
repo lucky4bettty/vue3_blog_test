@@ -10,8 +10,9 @@
 
       <div class="">
         <router-link to="/">
-          <img class="logo"
-          src="@/images/logo.jpeg"/>
+        我是ＬＯＧＯ
+          <!-- <img class="logo"
+          src="@/images/logo.jpeg"/> -->
         </router-link>
 
       </div>
