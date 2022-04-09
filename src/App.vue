@@ -1,8 +1,5 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
+
 
   <div>
     <!-- logo+個人資料連結 -->
@@ -43,7 +40,15 @@
     </div>
 
     <!-- 選擇類別列 - member登入 未完成  -->
-    <div>
+    <div class="navbar">
+      
+      <!-- 左邊分類 -->
+      <ul class="navbar_left d-flex">
+        
+        <li class="activeNav"><router-link to="/information">個人資料</router-link> </li>
+        <li><router-link to="/article">我的文章</router-link></li>
+        
+      </ul>
 
     </div>
 

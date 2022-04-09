@@ -47,16 +47,20 @@ ul , li {
     .navbar_left{
         height: 100%;
         li{
+            width: 100px;
             display: flex;
             justify-content:center ;
             align-items: center;
             padding: 10px;
             cursor: pointer;
-            
+            a{
+                color: white;
+            }
         }
 
         li:hover{
             background-color: rgb(87, 136, 228);
+            
         }
 
         .activeNav{
@@ -77,4 +81,10 @@ ul , li {
 // 共用元件
 .el-button{
     width: 120px;
+}
+
+// 使用者頁面寬度
+.member{
+    width: 80%;
+    margin: 0 auto;
 }

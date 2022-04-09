@@ -4,63 +4,9 @@
         <h2>XX文章</h2>
         <!-- 多筆ＬＩＳＴ -->
         <div class="article_all">
-          <!-- 單筆start -->
-          <div class="article_one">
-            <!-- 收藏 -->
-            <div class="article_like">
-              <div class="num">
-                0
-              </div>
-              <div class="word">
-                like
-              </div>
-            </div>
-            <!-- 回覆 -->
-            <div class="article_reply">
-              <div class="num">
-                0
-              </div>
-              <div class="word">
-                回答
-              </div>
-            </div>
-            <!-- 文章 -->
-            <div class="article">
-              <div class="article_title">我是標題</div>
-              <!-- <div class="article_cont">
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-              </div> -->
-              <span class="article_author">作者．發布日期</span>
-            </div>
-          </div>
-          <!-- 單筆end -->
-                    <div class="article_one">
-            <!-- 收藏 -->
-            <div class="article_like">
-              <div class="num">
-                0
-              </div>
-              <div class="word">
-                like
-              </div>
-            </div>
-            <!-- 回覆 -->
-            <div class="article_reply">
-              <div class="num">
-                0
-              </div>
-              <div class="word">
-                回答
-              </div>
-            </div>
-            <!-- 文章 -->
-            <div class="article">
-              <div class="article_title">我是標題</div>
-              <span class="article_author">作者．發布日期</span>
-            </div>
-          </div>
+
+        <OneData  />
+
 
         </div>
         <!-- 頁數 -->
@@ -84,12 +30,15 @@
 <script>
 import { watch, onMounted, computed, ref, inject } from "vue";
 import store from "@/store/index.js";
+import OneData from "@/views/widget/OneData.vue";
 
 
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    OneData,
+  },
   setup() {
 
     var currentPage = ref(1)
@@ -116,5 +65,8 @@ export default {
 
 </script>
 
+
+
 <style lang="scss" src="@/style/vue-common.scss" scoped></style>
 <style lang="scss" src="@/style/user/home.scss" scoped></style>
+
