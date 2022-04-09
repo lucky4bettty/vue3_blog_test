@@ -45,7 +45,7 @@ export default {
         .article_one{
             display: flex;
             align-items: center;
-            height: 120px;
+            min-height: 150px;
             border-left: 1px rgb(190, 190, 190) solid ;
             border-right: 1px rgb(190, 190, 190) solid ;
             border-bottom: 1px rgb(190, 190, 190) solid ;
@@ -83,13 +83,7 @@ export default {
         .article_title{
             font-size: 20px;
         }
-        /* // 目前用不到 */
-        .article_cont{
-            font-size: 12px;
-            overflow:hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+
         .article_author {
             font-size: 12px;
         }
