@@ -3,20 +3,22 @@
 
     <!-- 登入 -->
     <div class="card_login">
-
-        <div>
+ 
+        <div class="card_title">
             登入
         </div>
 
-        <span>帳號：</span>
+        <span class="account">帳號：</span>
         <el-input v-model="account_login" placeholder=""></el-input>
         
-        <span>密碼：</span>
+        <span class="password">密碼：</span>
         <el-input v-model="ps_login" placeholder=""></el-input>
 
-        <el-button type="primary">
-            登入
-        </el-button>
+        <div class="login_btn">
+            <el-button type="primary">
+                登入
+            </el-button>    
+        </div>
 
 
     </div>
@@ -24,7 +26,7 @@
     <!-- 註冊 -->
     <div class="card_login">
 
-        <div>
+        <div class="card_title">
             註冊
         </div>
 
@@ -34,9 +36,12 @@
         <span>密碼：</span>
         <el-input v-model="ps_login" placeholder=""></el-input>
 
-        <el-button type="primary">
-            登入
-        </el-button>
+        <div class="login_btn">
+            <el-button type="primary">
+                註冊
+            </el-button>    
+        </div>
+
 
 
     </div>

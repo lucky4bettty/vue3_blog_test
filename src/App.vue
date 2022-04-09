@@ -29,7 +29,7 @@
       
       <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
-        <li>主題一</li>
+        <li class="activeNav">主題一</li>
         <li>主題二</li>
       </ul>
       <!-- 右邊登入 + 查詢 -->
