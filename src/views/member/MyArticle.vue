@@ -21,7 +21,7 @@ import OneData from "@/views/widget/OneData.vue";
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
 
 export default {
-  name: "Article",
+  name: "MyArticle",
   components: {
     OneData,
   },

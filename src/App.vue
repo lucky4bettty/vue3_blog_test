@@ -46,7 +46,8 @@
       <ul class="navbar_left d-flex">
         
         <li class="activeNav"><router-link to="/information">個人資料</router-link> </li>
-        <li><router-link to="/article">我的文章</router-link></li>
+        <li><router-link to="/myarticle">我的文章</router-link></li>
+        <li><router-link to="/articleview">文章瀏覽</router-link></li>
         
       </ul>
 
