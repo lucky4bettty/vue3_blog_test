@@ -30,6 +30,8 @@
 // 文字編輯器 ： https://juejin.cn/post/7012073370023886856
 import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
 import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+import { showErrDialog,showDialog } from "@/js/utils/Utils.js";
+import { DialogModel } from "@/js/utils/Model.js";
 
 export default {
   name: "NewArticle",
@@ -37,7 +39,7 @@ export default {
     Vue3Tinymce
   },
   setup(props, {emit}) {
-
+    const basicDialog = inject("basicDialog");
     
     onMounted(() => {
 
@@ -56,6 +58,16 @@ export default {
     // 新增文章
     const add = () =>{
       console.log(state.content)
+
+        let dialogModel = new DialogModel();
+        dialogModel.title = "失敗";
+        dialogModel.content = `請重新登入`;
+        dialogModel.doConfirm = function(){};
+        dialogModel.clickCloseIcon = function(){};
+
+        return showDialog(basicDialog, dialogModel);
+
+      //showErrDialog(basicDialog, '我錯了');
     }
 
 

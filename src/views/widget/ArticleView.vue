@@ -15,7 +15,7 @@
     
 
     <!-- html 注入 -->
-    <div class="myHtml">
+    <div class="myHtml" v-html="cont">
 
     </div>
 
@@ -44,10 +44,12 @@ export default {
 
     });
 
+    const cont='<p><span style="color: #ba372a;">編輯文章</span></p>';
+
 
 
     return {
-
+        cont
     };
   },
 };

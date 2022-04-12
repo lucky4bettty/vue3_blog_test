@@ -18,6 +18,20 @@ body {
     height: 100%;
 }
 
+// 手機I13  6.1吋(w390px)為瀏覽最佳的方式進行頁面布局
+// media 小於 768px 即進入手機佈局
+@mixin mobile {
+    @media (max-width: 767.98px) {
+        @content;
+    }
+}
+
+body {
+    @include mobile {
+        padding-top: 90px;
+    }
+}
+
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
@@ -88,3 +102,137 @@ ul , li {
     width: 80%;
     margin: 0 auto;
 }
+
+
+// element 彈窗
+.el-overlay-dialog{
+
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.el-overlay {
+    // 使用偽元素居中定位方式 https://eudora.cc/posts/31492/
+    text-align: center;
+    font-size: 0;
+    &:after {
+        content: "";
+        height: 100%;
+        vertical-align: middle;
+        display: inline-block;
+        width: 0px;
+    }
+}
+
+.el-dialog {
+    background-color: #ffffff;
+    width: auto !important;
+    min-width: 480px;
+    max-width: 1200px;
+    min-height: 284px;
+    max-height: 824px;
+    border-radius: 0.75rem;
+    margin-top: 0 !important;
+    margin-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+    @include mobile {
+        min-width: 272px;
+        max-width: 340px;
+    }
+    .el-dialog__header {
+        font-size: 1.25rem;
+        background-color: #0089d1;
+        border-radius: 0.75rem 0.75rem 0 0;
+        padding: 14px 20px 10px 20px;
+        .el-dialog__title {
+            text-align: center;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+        .el-dialog__headerbtn {
+            right: 24px;
+        }
+        .el-dialog__close {
+            color: #ffffff;
+        }
+        .el-icon-close:before {
+            font-size: 24px;
+        }
+    }
+    .el-dialog__body {
+        text-align: center;
+        font-size: 1rem;
+        padding: 32px 24px;
+        @include mobile {
+            padding: 24px 24px;
+        }
+
+        .el-row {
+            i {
+                color: var(--gr);
+                font-size: 90px;
+                margin-bottom: 8px;
+            }
+            // 傳送失敗
+            .el-icon-error {
+                color: #e64c3a;
+            }
+
+            // 儲存成功
+            .el-icon-success {
+                color: #01b6ad;
+            }
+
+            // 離開此頁
+            .el-icon-warning {
+                color: #E67E23;
+            }
+        }
+        .el-row:nth-of-type(2) {
+            margin-bottom: 24px;
+            @media screen and (min-width: 768px) {
+                margin-bottom: 32px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        .el-dialog__body .bodyContent {
+            max-width: 224px;
+        }
+    }
+    
+    .popupInfo-icon {
+        height: 80px;
+        width: 80px;
+        margin: 0 auto 18px auto;
+    }
+    .el-dialog__footer {
+        padding: 0 0 32px 0;
+        @include mobile {
+            padding: 0 0 24px 0;
+        }
+    }
+
+    .el-dialog__footer .FBButtons .el-button {
+        height: 40px !important;
+        width: 160px;
+        &:last-of-type {
+            margin-right: 0;
+        }
+        @include mobile {
+            width: calc(50% - 12px);
+            min-width: 72px;
+        }
+    }
+    .el-dialog__footer .FBButtons {
+        @include mobile {
+            padding: 0 24px;
+        }
+    }
+}
+
+// element 彈窗 -end

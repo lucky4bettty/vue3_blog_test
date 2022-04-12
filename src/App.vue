@@ -31,7 +31,7 @@
       </ul>
       <!-- 右邊登入 + 查詢 -->
       <div class="navbar_right">
-        <img src="@/images/icon-search.svg" />
+        <img @click="searchShow" src="@/images/icon-search.svg" />
         <span>
           <router-link to="/login">登入 / 註冊</router-link>
         </span>
@@ -58,4 +58,47 @@
   <router-view />
 </template>
 
+<script>
+// 文字編輯器 ： https://juejin.cn/post/7012073370023886856
+import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
+import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+
+export default {
+  name: "NewArticle",
+  components: {
+    Vue3Tinymce
+  },
+  setup(props, {emit}) {
+
+    
+    onMounted(() => {
+
+    });
+
+
+
+    const title = ref('');
+
+    // 查詢- show
+    const searchShow = ()=>{
+
+    }
+    
+    const searchBtn = () =>{
+      console.log(state.content)
+    }
+
+
+
+    return {
+      searchBtn,
+      searchShow
+
+    };
+  },
+};
+
+</script>
+
 <style lang="scss" src="@/style/vue-common.scss" scoped></style>
+
