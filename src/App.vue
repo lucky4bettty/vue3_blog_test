@@ -26,23 +26,29 @@
       
       <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
-        <li class="activeNav">主題一</li>
+        <li class="activeNav" >主題一</li>
         <li>主題二</li>
       </ul>
       <!-- 右邊登入 + 查詢 -->
       <div class="navbar_right">
-        <img @click="searchShow" src="@/images/icon-search.svg" />
-        <span>
-          <router-link to="/login">登入 / 註冊</router-link>
-        </span>
+        <div class="search_icon" :class="{ search_icon_active: showSearch }" >
+          <img @click="searchShow(true)" src="@/images/icon-search.svg" />
+        </div>
+
+        <div>
+          <span>
+            <router-link to="/login">登入 / 註冊</router-link>
+          </span>
+        </div>
+        
+
       </div>
 
     </div>
 
     <!-- 選擇類別列 - member登入 未完成  -->
-    <div class="navbar">
+    <!-- <div class="navbar">
       
-      <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
         
         <li class="activeNav"><router-link to="/information">個人資料</router-link> </li>
@@ -51,10 +57,26 @@
         
       </ul>
 
-    </div>
+    </div> -->
 
 
   </div>
+
+  <!-- 查詢框框 -->
+  <!-- 遮罩 -->
+  <div v-show="showSearch" class="searchBg" @click="searchShow(false)">
+  </div>
+  <!-- 查詢框內容 -->
+  <div v-show="showSearch" class="search_dialog">
+
+    <div class="search_input">
+      <input class="now_input" v-model="search_input" placeholder="搜尋主題" />
+    </div>
+    
+    <el-button  class="search_btn">查詢</el-button>
+      
+  </div>
+
   <router-view />
 </template>
 
@@ -77,22 +99,32 @@ export default {
 
 
 
-    const title = ref('');
+    const search_input = ref(''); // 查詢條件
 
     // 查詢- show
-    const searchShow = ()=>{
-
+    const searchShow = (isShow)=>{
+      showSearch.value = isShow ;
     }
     
     const searchBtn = () =>{
       console.log(state.content)
     }
 
+    // 查詢框顯示隱藏
+    const showSearch = ref(true);
+
+    const handleClose = ()=>{
+
+    }
+
 
 
     return {
       searchBtn,
-      searchShow
+      searchShow,
+      search_input,
+      showSearch,
+      handleClose
 
     };
   },
@@ -101,4 +133,82 @@ export default {
 </script>
 
 <style lang="scss" src="@/style/vue-common.scss" scoped></style>
+
+<style lang="scss">
+
+// search 框框
+.search_icon{
+  height: 100%;
+  width:50px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 120;
+}
+
+.search_icon_active{
+  background-color: #747474;
+}
+
+.searchBg{
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  opacity: 0.3; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:100;
+}
+
+.search_dialog{
+  width: 100%;
+  height: 20%;
+  background: rgb(116, 116, 116);
+  position: absolute;
+  top: 70px;
+  left: 0;
+  z-index:100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.search_input{
+  width: 60% ;
+  margin-left:10px ;
+  margin-right:10px ;
+  ::placeholder { /* CSS 3 標準 */
+    color: white;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome, Safari */
+    color: white;
+  }
+
+  :-ms-input-placeholder { /* IE 10+ */
+    color: white;
+  }
+
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+    opacity: 1;
+  }
+
+  .now_input{
+  border-top: 0;  // 去除未選中狀態邊框
+  border-left: 0;  // 去除未選中狀態邊框
+  border-right: 0;  // 去除未選中狀態邊框
+  border-bottom: 1px white solid;  // 去除未選中狀態邊框
+  width: 100%;
+  outline: none; // 去除選中狀態邊框
+  background-color: rgba(0, 0, 0, 0);// 透明背景
+  color:white ;
+  }
+}
+
+
+
+</style>
 

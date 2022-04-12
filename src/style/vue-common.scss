@@ -82,6 +82,12 @@ ul , li {
         }
     }
 
+    .navbar_right{
+        height:100%;
+        display:flex;
+        align-items: center;
+    }
+
     .navbar_right a{
         margin-left: 5px;
         color: white;
@@ -95,6 +101,7 @@ ul , li {
 // 共用元件
 .el-button{
     width: 120px;
+    height: 40px;
 }
 
 // 使用者頁面寬度
