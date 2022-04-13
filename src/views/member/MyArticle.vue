@@ -7,8 +7,10 @@
 
 
   <div class="article_all">
-    <OneData  />
-    <OneData  />
+    <OneData v-for="item in showData" :key="item.id" 
+      :onedata="item"
+      :canedit="true"
+    />
   </div>
 </div>
 
@@ -32,10 +34,29 @@ export default {
 
     });
 
+    const showData = [
+        {
+          title:"我是標題",
+          author:"我我我",
+          date:"2022/04/01",
+          like:2,
+          reply:1,
+          id:"a1"
+        },
+        {
+          title:"我是標題22",
+          author:"ｕｕｕ",
+          date:"2022/04/01",
+          like:2,
+          reply:1,
+          id:"a2"
+        },
+    ]
+
 
 
     return {
-
+      showData
     };
   },
 };

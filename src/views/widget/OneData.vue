@@ -1,41 +1,110 @@
 <template>
           <div class="article_one">
-            <!-- 收藏 -->
-            <div class="article_like">
-              <div class="num">
-                0
+            <!-- 內容 -->
+            <div class="d-flex">
+              <!-- 收藏 -->
+              <div class="article_like">
+                <div class="num">
+                  {{props.onedata.like}}
+                </div>
+                <div class="word">
+                  like
+                </div>
               </div>
-              <div class="word">
-                like
+              <!-- 回覆 -->
+              <div class="article_reply">
+                <div class="num">
+                  {{props.onedata.reply}}
+                </div>
+                <div class="word">
+                  回答
+                </div>
+              </div>
+              <!-- 文章 -->
+              <div class="article">
+                <div class="article_title">
+                  {{props.onedata.title}}
+                  </div>
+                <span class="article_author">
+                  {{props.onedata.author}}．{{props.onedata.date}}
+                </span>
               </div>
             </div>
-            <!-- 回覆 -->
-            <div class="article_reply">
-              <div class="num">
-                0
-              </div>
-              <div class="word">
-                回答
-              </div>
-            </div>
-            <!-- 文章 -->
-            <div class="article">
-              <div class="article_title">我是標題</div>
-              <!-- <div class="article_cont">
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-                我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
-              </div> -->
-              <span class="article_author">作者．發布日期</span>
+
+            <!-- 編輯 -->
+            <div class="edit">
+              編輯
             </div>
           </div>
 </template>
 
 <script>
+import { watch, onMounted, computed, ref, inject } from "vue";
+
 export default {
   name: "OneData",
   props: {
-    
+    onedata:{
+      type:Object,
+      default:{
+        //欄位標題
+        title:{
+          type:String,
+          default:""
+        },
+        //作者
+        author:{
+          type:String,
+          default:""
+        },
+        //發布日期
+        date:{
+          type:String,
+          default:""
+        },
+        //喜愛
+        like:{
+          type:Number,
+          default:0
+        },
+        //回答
+        reply:{
+          type:Number,
+          default:0
+        },
+        //id
+        id:{
+          type:String,
+          default:""
+        }
+      }
+    },
+    canedit:{
+      type:Boolean,
+      default:false
+    }
+
+
+  },
+    setup(props, {emit}) {
+
+    onMounted(() => {
+
+      console.log(props)
+      
+    });
+
+
+
+
+
+
+
+    return {
+      props,
+
+
+    };
   },
 };
 </script>
@@ -44,6 +113,7 @@ export default {
 
         .article_one{
             display: flex;
+            justify-content: space-between;
             align-items: center;
             min-height: 150px;
             border-left: 1px rgb(190, 190, 190) solid ;
@@ -87,5 +157,17 @@ export default {
         .article_author {
             font-size: 12px;
         }
+
+        /* 編輯 */
+        .edit{
+          min-height: 150px;
+          min-width: 20%;
+          background-color: rgb(172, 172, 172);
+          color:white ;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
 </style>
 
