@@ -31,6 +31,7 @@
 </template>
 <script>
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
   name: "ArticleView",
@@ -38,10 +39,14 @@ export default {
 
   },
   setup(props, {emit}) {
-
+      const route = useRoute();
+      const router = useRouter();
+      var articleId ; // 文章id
     
     onMounted(() => {
-
+        articleId = route.params.id ;
+        console.log(route.params.id)
+        
     });
 
     const cont='<p><span style="color: #ba372a;">編輯文章</span></p>';

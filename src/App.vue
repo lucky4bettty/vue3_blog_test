@@ -26,8 +26,9 @@
       
       <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
-        <li class="activeNav" >主題一</li>
-        <li>主題二</li>
+        <li v-for="item in theme" :class="{ activeNav: navbarIsActive.includes(item.type)}" :key="item.type" @click="clickNavTheme(item.type)">{{item.title}}</li>
+        <!-- <li class="activeNav" ><router-link to="/">主題一</router-link></li>
+        <li><router-link to="/">主題二</router-link></li> -->
       </ul>
       <!-- 右邊登入 + 查詢 -->
       <div class="navbar_right">
@@ -47,17 +48,17 @@
     </div>
 
     <!-- 選擇類別列 - member登入 未完成  -->
-    <!-- <div class="navbar">
+    <div class="navbar">
       
       <ul class="navbar_left d-flex">
         
-        <li class="activeNav"><router-link to="/information">個人資料</router-link> </li>
-        <li><router-link to="/myarticle">我的文章</router-link></li>
-        <li><router-link to="/articleview">文章瀏覽</router-link></li>
+        <li :class="{ activeNav:(showPage=='information') }"><router-link to="/information">個人資料</router-link> </li>
+        <li :class="{ activeNav:(showPage=='myarticle') }"><router-link to="/myarticle">我的文章</router-link></li>
+        <li><router-link to="/articleview">文章瀏覽(測試用)</router-link></li>
         
       </ul>
 
-    </div> -->
+    </div>
 
 
   </div>
@@ -82,23 +83,25 @@
 
 <script>
 // 文字編輯器 ： https://juejin.cn/post/7012073370023886856
-import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
-import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+import { ref, defineComponent, onMounted,watch,inject,reactive , computed} from "vue";
+import { useRoute, useRouter } from "vue-router";
+import store from "@/store/index.js";
+import {theme} from "@/js/utils/theme.js"
+import router from "@/router/index.js";
 
 export default {
   name: "NewArticle",
   components: {
-    Vue3Tinymce
+
   },
   setup(props, {emit}) {
 
-    
     onMounted(() => {
-
+      console.log(theme)
     });
 
 
-
+    //---------查詢相關----------
     const search_input = ref(''); // 查詢條件
 
     // 查詢- show
@@ -111,12 +114,52 @@ export default {
     }
 
     // 查詢框顯示隱藏
-    const showSearch = ref(true);
+    const showSearch = ref(false);
 
     const handleClose = ()=>{
 
     }
 
+    //---------navbar切換相關----------
+    
+    // 目前route
+    const showPage = computed(() => {
+      return store.state.nowRoute.path;
+    });
+
+    // 切路由
+    watch(showPage, (path) => {
+      console.log("本頁:" + path);
+
+      const pageIsMember = isMemberPage() ;
+
+      if(pageIsMember){
+        navbarIsActive.value = "/"
+      }
+
+      function isMemberPage(){
+        if(path ==="/"){ return false }
+        var isMember = true ;
+        theme.forEach(element => {
+          //debugger ;
+          if(path ===`/${element.type}`){
+            isMember = false ;
+          }
+        });
+
+        return isMember;
+
+      }
+      
+
+    })
+
+    // 切換navbar主題
+    const navbarIsActive = ref("/");
+    const clickNavTheme = (type) =>{
+      navbarIsActive.value = `/${type}` ;
+      router.push(`/${type}`); // 成功後跳轉route
+    }
 
 
     return {
@@ -124,7 +167,11 @@ export default {
       searchShow,
       search_input,
       showSearch,
-      handleClose
+      handleClose,
+      theme,
+      clickNavTheme,
+      navbarIsActive,
+      showPage
 
     };
   },

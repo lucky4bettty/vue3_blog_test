@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/user/Home.vue";
+import store from "@/store/index.js";
 
 const routes = [
   {
-    path: "/",
+    path: "/:type?/",
     name: "Home",
     component: Home,
   },
@@ -44,7 +45,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/views/member/NewArticle.vue"),
   },
   {
-    path: "/articleview",
+    path: "/articleview/:id?/",
     name: "Articleview",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -67,5 +68,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+//判斷是否驗證
+router.beforeEach((to, from, next) => {
+
+  store.dispatch("nowRoute/switchPage" , to.fullPath  ) // 存url進store
+
+  next();
+
+})
 
 export default router;

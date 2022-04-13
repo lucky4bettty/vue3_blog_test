@@ -1,8 +1,16 @@
 import { createStore } from "vuex";
+import nowRoute from './modules/nowRoute.js'
+
 
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+     nowRoute:nowRoute,
+  }
 });
+
+// export default createStore({
+//   state: {},
+//   mutations: {},
+//   actions: {},
+//   modules: {},
+// });
