@@ -10,7 +10,7 @@ module.exports = {
   // <!--所有 webpack-dev-server 的选项-->
   devServer: {
     // <!--端口号-->
-    port: process.env.port || 9527,
+    port: process.env.port || 9627,
     // <!--dev-server在服务器启动后打开默认浏览器-->
     open: true,
     // <!--出现编译器错误或警告时，在浏览器中显示全屏覆盖。-->

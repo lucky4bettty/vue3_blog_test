@@ -97,7 +97,7 @@ export default {
   setup(props, {emit}) {
 
     onMounted(() => {
-      console.log(theme)
+      
     });
 
 

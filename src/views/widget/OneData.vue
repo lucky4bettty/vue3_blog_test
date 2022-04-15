@@ -32,7 +32,7 @@
             </div>
 
             <!-- 編輯 -->
-            <div class="edit">
+            <div v-show="props.canedit" class="edit">
               編輯
             </div>
           </div>
@@ -167,6 +167,12 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          opacity: 0;
+          transition: opacity 0.5s linear;
+        }
+
+        .article_one:hover .edit{
+          opacity: 1;
         }
 
 </style>
