@@ -2,42 +2,87 @@
 
 <div class="articleview">
 
-<div class="member articleview_bg">
+<div class="member">
+    <!-- 上方頁面資料 -->
+    <div class="articleview_bg">    
+        <div class="myData">
+            作者：ＯＯＯ   <span class="time">2022.04.01</span> 
+        </div>
 
-    <div class="myData">
-        作者：ＯＯＯ   <span class="time">2022.04.01</span> 
-    </div>
+        <div class="myData">
+            標題：？？？？
+        </div>
 
-    <div class="myData">
-        標題：？？？？
-    </div>
+        <div class="addlove">
+            <div class="addloveIcon">
+                                
+                    <img class="like-icon" src="@/images/heart-solid-red.svg" alt="">
+                    <img class="like-icon" src="@/images/heart-regular-red.svg" alt="">            
 
-    <div class="addlove">
-        <div class="addloveIcon">
+            </div>  
+        </div>
+
+
+        
+        <!-- html 注入 -->
+        <div class="myHtml" v-html="cont">
+
+        </div>
+
+        <!-- 回覆框框 -->
+        <div class="d-flex">
+            <div class="title_img">
+                <img src="@/images/my.jpeg" alt="">
+            </div>
+
+            <div class="">
+                <el-input v-model="myReply" type="textarea" placeholder=""></el-input>
+            </div>
             
-            <!-- <embed src="@/images/heart-solid.svg" style="display:block;width:330px;height:240px" /> -->
-                
 
-                <img class="like-icon" src="@/images/heart-solid-red.svg" alt="">
-                <img class="like-icon" src="@/images/heart-regular-red.svg" alt="">
-
-                <img src="@/images/like-svgrepo-com.svg" alt="">
-            
-
-
-
-        </div>  
-    </div>
-
-
-    
-
-    <!-- html 注入 -->
-    <div class="myHtml" v-html="cont">
+            <!-- <el-button type="primary">送出</el-button> -->
+        </div>
+        
 
     </div>
+
+
+
+
 
     <!-- 留言 -->
+    <div class="reply_num">XX個回答</div>
+    <div class="reply articleview_bg">
+        
+
+        <div class="oneReply">
+            <!-- 標題 -->
+            <div class="title_all">
+                <!-- 照片 -->
+                <div class="title_img">
+
+                    <img src="@/images/my.jpeg" alt="">
+
+                </div>
+                <!-- 名稱＋日期 -->
+                <div class="title_info">
+                    <div class="name">
+                        小小兵
+                    </div>
+                    <div class="date">
+                        2022/04/01
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- 內容 -->
+            <div>
+
+            </div>
+        </div>
+
+    </div>
     
     
 
@@ -72,16 +117,21 @@ export default {
     });
 
     const cont='<p><span style="color: #ba372a;">編輯文章</span></p>';
+    const myReply = ref('') ;
 
 
 
     return {
-        cont
+        cont,
+        myReply
     };
   },
 };
 
 </script>
+
+<style lang="scss" src="@/style/articleview.scss" scoped></style>
+
 
 <style>
 
@@ -123,6 +173,15 @@ export default {
   -webkit-filter: hue-rotate(240deg) saturate(100); 
   filter: hue-rotate(240deg) saturate(5); 
 }
+
+/* 底下討論區 */
+.reply_num{
+    margin-top : 20px;
+    font-size: 20px;
+
+}
+
+
 
 
 </style>
