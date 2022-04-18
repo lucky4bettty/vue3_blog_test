@@ -90,7 +90,7 @@
 
 </template>
 <script>
-import { ref, defineComponent, onMounted,watch,inject} from "vue";
+import { ref, defineComponent, onMounted,watch,inject,provide} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Reply from "@/views/widget/Reply.vue"
 
@@ -113,6 +113,13 @@ export default {
     const cont='<p><span style="color: #ba372a;">編輯文章</span></p>';
     const testreply = {
         // imgbase64:"TTT"
+    }
+
+    // 回覆按下送出
+    provide("submitReply", submitReply);
+    function submitReply(data){
+        console.log("－－－外面－－－")
+        console.log(data)
     }
 
 

@@ -33,11 +33,12 @@ export default {
 
   },
     setup(props, {emit}) {
+    const myReply = ref('');  //  回覆內容
+    const imageUrl = ref(''); //  圖片
+    const submitReply = inject("submitReply");
 
     onMounted(() => {
 
-    console.log(props)
-    console.log(props.onedata.imgbase64)
     if(props.onedata.imgbase64){
         const buffer = Buffer.from(props.onedata.imgbase64, 'base64');
         const blob = new Blob([buffer], {
@@ -50,12 +51,12 @@ export default {
     
     });
 
-    const myReply = ref('');  //  回覆內容
-    const imageUrl = ref(''); //  圖片
 
+
+    //回覆按下送出
     const replySubmit = () =>{
-        console.log('送出')
         console.log(myReply.value)
+        submitReply("我送出")
     }
 
 
