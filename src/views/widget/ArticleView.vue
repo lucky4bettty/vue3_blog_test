@@ -30,18 +30,8 @@
         </div>
 
         <!-- 回覆框框 -->
-        <div class="d-flex">
-            <div class="title_img">
-                <img src="@/images/my.jpeg" alt="">
-            </div>
+        <Reply :onedata="testreply"></Reply>
 
-            <div class="">
-                <el-input v-model="myReply" type="textarea" placeholder=""></el-input>
-            </div>
-            
-
-            <!-- <el-button type="primary">送出</el-button> -->
-        </div>
         
 
     </div>
@@ -77,9 +67,12 @@
 
             </div>
             <!-- 內容 -->
-            <div>
+            <div v-html="cont">
 
             </div>
+
+            <!-- 回覆框框 -->
+            <Reply :onedata="testreply"></Reply>
         </div>
 
     </div>
@@ -99,11 +92,12 @@
 <script>
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
 import { useRoute, useRouter } from "vue-router";
+import Reply from "@/views/widget/Reply.vue"
 
 export default {
   name: "ArticleView",
   components: {
-
+    Reply
   },
   setup(props, {emit}) {
       const route = useRoute();
@@ -117,13 +111,17 @@ export default {
     });
 
     const cont='<p><span style="color: #ba372a;">編輯文章</span></p>';
-    const myReply = ref('') ;
+    const testreply = {
+        // imgbase64:"TTT"
+    }
+
 
 
 
     return {
         cont,
-        myReply
+        testreply
+
     };
   },
 };

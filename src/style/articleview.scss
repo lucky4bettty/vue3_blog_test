@@ -1,4 +1,4 @@
-.oneReply{
+.oneReply , .myreply{
     .title_all{
         display: flex;
 
@@ -17,17 +17,8 @@
         }
     }
 
+
 }
 
-.title_img{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: pink;
-}
 
-.title_img img{
-    width: 100%;
-    height:100%;
-    object-fit:fill
-}
+
