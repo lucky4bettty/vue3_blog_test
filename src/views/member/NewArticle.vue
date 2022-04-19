@@ -105,5 +105,9 @@ export default {
   margin-bottom:20px;
 }
 
+.el-button{
+  width:120px;
+}
+
 </style>
 

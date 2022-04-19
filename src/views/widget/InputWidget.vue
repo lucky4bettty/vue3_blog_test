@@ -1,7 +1,7 @@
 <template>
     <div class="InputWidget">
         <span class="account">{{props.onedata.label}}：</span>
-        <el-input class="myInput" v-model="nowValue" placeholder="" @change="getValue"></el-input>
+        <el-input class="myInput " :class="{'isErr':(errMsg!=='')}" v-model="nowValue" placeholder="" @change="getValue"></el-input>
         <div class="errMsg">{{errMsg}}</div>
     </div>
 </template>
@@ -90,6 +90,10 @@ export default {
 .myInput{
     margin-top:10px ;
     margin-bottom: 10px;
+}
+
+.isErr .el-input__inner{
+    border:1px solid red ;
 }
 
 </style>

@@ -1,0 +1,20 @@
+.sign_bg{
+    overflow-y: auto;
+}
+.sign{
+    width: 80%;
+    background: white;
+    margin: 0 auto;
+    margin-top:50px;
+    margin-bottom:50px;
+    padding: 50px;
+}
+
+.sign_btn{
+    display: flex;
+    justify-content: center;
+}
+
+.el-button{
+    width: 120px;
+}

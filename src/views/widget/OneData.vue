@@ -90,7 +90,6 @@ export default {
 
     onMounted(() => {
 
-      console.log(props)
       
     });
 
