@@ -2,7 +2,7 @@
 
 <div class="member">
   <div class="addBtn">
-    <el-button type="primary"><router-link to="/newArticle">發表新文章</router-link></el-button>
+    <el-button type="primary"><router-link to="/member/newArticle">發表新文章</router-link></el-button>
   </div>
 
 

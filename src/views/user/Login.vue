@@ -14,7 +14,7 @@
         <div class="login_btn">
             
 
-            <el-button type="primary">
+            <el-button @click="loginBtn" type="primary">
                 登入
             </el-button>
             <el-button @click="nextPage('/sign')" type="primary">
@@ -88,11 +88,17 @@ export default {
         router.push(url)
     }
 
+    //登入
+    const loginBtn = ()=>{
+        router.push('/member/information')
+    }
+
 
 
     return {
       field_all ,
-      nextPage
+      nextPage ,
+      loginBtn
 
     };
   },

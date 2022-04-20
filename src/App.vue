@@ -16,13 +16,15 @@
 
       
       <div class="d-flex align-items-end">
-        Hi , ＯＯＯ
+        <router-link to="/member/information">
+          Hi , ＯＯＯ
+        </router-link>
       </div>
 
     </div>
 
     <!-- 選擇類別列 - user瀏覽  -->
-    <div class="navbar">
+    <div class="navbar" v-show="!MemberNav">
       
       <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
@@ -48,13 +50,13 @@
     </div>
 
     <!-- 選擇類別列 - member登入 未完成  -->
-    <div class="navbar">
+    <div class="navbar" v-show="MemberNav">
       
       <ul class="navbar_left d-flex">
         
-        <li :class="{ activeNav:(showPage=='information') }"><router-link to="/information">個人資料</router-link> </li>
-        <li :class="{ activeNav:(showPage=='myarticle') }"><router-link to="/myarticle">我的文章</router-link></li>
-        <li><router-link to="/articleview">文章瀏覽(測試用)</router-link></li>
+        <li :class="{ activeNav:(showPage=='information') }"><router-link to="/member/information">個人資料</router-link> </li>
+        <li :class="{ activeNav:(showPage=='myarticle') }"><router-link to="/member/myarticle">我的文章</router-link></li>
+        <li><router-link to="/member/articleview">文章瀏覽(測試用)</router-link></li>
         
       </ul>
 
@@ -127,9 +129,11 @@ export default {
       return store.state.nowRoute.path;
     });
 
+    var MemberNav =ref(false)
     // 切路由
     watch(showPage, (path) => {
       console.log("本頁:" + path);
+      MemberNav.value = (path.substr(1).split('/')[0] ==="member")?true:false ; // 要顯示哪個nav
 
       const pageIsMember = isMemberPage() ;
 
@@ -161,6 +165,11 @@ export default {
       router.push(`/${type}`); // 成功後跳轉route
     }
 
+    //到下一頁
+    const nextPage = (url)=>{
+        router.push(url)
+    }
+
 
     return {
       searchBtn,
@@ -171,7 +180,9 @@ export default {
       theme,
       clickNavTheme,
       navbarIsActive,
-      showPage
+      showPage,
+      MemberNav,
+      nextPage
 
     };
   },

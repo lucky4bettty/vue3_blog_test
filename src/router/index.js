@@ -27,7 +27,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/views/user/Sign.vue"),
   },
   {
-    path: "/information",
+    path: "/member/information",
     name: "Information",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -36,7 +36,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/views/member/Information.vue"),
   },
   {
-    path: "/myarticle",
+    path: "/member/myarticle",
     name: "myArticle",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -45,7 +45,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/views/member/MyArticle.vue"),
   },
   {
-    path: "/newArticle",
+    path: "/member/newArticle",
     name: "NewArticle",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -54,7 +54,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/views/member/NewArticle.vue"),
   },
   {
-    path: "/articleview/:id?/",
+    path: "/member/articleview/:id?/",
     name: "Articleview",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -62,19 +62,19 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/widget/ArticleView.vue"),
   },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
+  // {
+  //   path: "/about",
+  //   name: "About",
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  // },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.VUE_APP_BASE_URL),
   routes,
 });
 
