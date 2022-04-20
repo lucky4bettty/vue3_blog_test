@@ -15,22 +15,6 @@ export default {
       onedata:{
         type:Object,
         default:{
-            label:{
-                type:String,
-                default:""
-            },
-            errMsg:{
-                type:String,
-                default:""
-            },
-            value:{
-                type:String,
-                default:""
-            },
-            fieldName:{
-                type:String,
-                default:"" 
-            }
         }
 
       }
@@ -44,7 +28,7 @@ export default {
 
     onMounted(() => {
         errMsg.value=props.onedata.errMsg;
-        nowValue.value = props.onedata.value
+        nowValue.value = props.onedata.value;
     
       
     });
