@@ -1,0 +1,26 @@
+{
+    "result": "0",
+    "message": "執行成功",
+    "articleList": [
+        {
+            "title": "第一篇",
+            "content": "第一篇文章",
+            "author": "KL",
+            "account": "kl@gmail.com",
+            "likeAmount": 6,
+            "isFavorite": true,
+            "creatTime": "2000-01-01 01:01:01",
+            "modifyTime": "2000-01-01 01:01:01"
+        },
+        {
+            "title": "第2篇",
+            "content": "第2篇文章",
+            "author": "KL",
+            "account": "kl@gmail.com",
+            "likeAmount": 6,
+            "isFavorite": true,
+            "creatTime": "2000-01-02 01:01:01",
+            "modifyTime": "2000-01-02 01:01:01"
+        }
+    ]
+}

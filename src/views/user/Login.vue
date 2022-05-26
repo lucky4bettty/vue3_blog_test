@@ -34,6 +34,9 @@ import { watch, onMounted, computed, ref, inject ,provide , reactive} from "vue"
 import InputWidget from "@/views/widget/InputWidget.vue";
 import {inputWidgetModule} from "@/js/module/widgetModule.js"
 import router from "@/router/index.js";
+import {login_api} from "@/js/api/getData.js"
+import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
+
 
 export default {
   name: "Login_sign",
@@ -43,6 +46,8 @@ export default {
   props: {
   },
     setup(props, {emit}) {
+    const basicDialog = inject("basicDialog");
+
 
     const field_all = reactive({
         account:ref(new inputWidgetModule('帳號','account')),
@@ -89,7 +94,20 @@ export default {
     }
 
     //登入
-    const loginBtn = ()=>{
+    const loginBtn = async()=>{
+        
+        var req = { 
+            "account": field_all['account'],
+            "password": field_all['password']
+        } ;
+        
+        let res = await login_api(JSON.parse(JSON.stringify(req)));
+
+
+        if (res instanceof Error) {
+          return showErrDialog(basicDialog, res);
+        }
+
         router.push('/member/information')
     }
 
