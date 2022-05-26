@@ -27,7 +27,7 @@ export const apiUtil = async (path, data = {}, method = 'post', useLocalJson = f
       let resObj = res.data;
 
       // 這裡的 code 和 status code 毫無關聯，只是前後端約定好便於判斷的代號，如果不是 200 會跳出錯誤彈窗
-      if(resObj.status !== 200) {
+      if(res.status !== 200) { 
         return new Error(`${resObj.message}`);
       }
 

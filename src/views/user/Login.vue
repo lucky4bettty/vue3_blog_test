@@ -105,7 +105,8 @@ export default {
 
 
         if (res instanceof Error) {
-          return showErrDialog(basicDialog, res);
+           return showErrDialog(basicDialog, res.toString());
+
         }
 
         router.push('/member/information')
