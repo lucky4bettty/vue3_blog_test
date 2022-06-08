@@ -11,6 +11,19 @@
     標題：
     <el-input class="title_input" v-model="title" placeholder=""></el-input>
   </div>
+
+  <div>
+    文章類別：
+    <el-select v-model="catagory" placeholder="Select">
+      <el-option
+        v-for="item in catagory_option"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </div>
+
   
 
   <Vue3Tinymce v-model="state.content" :setting="state.setting" />
@@ -32,6 +45,8 @@ import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
 import Vue3Tinymce from '@jsdawn/vue3-tinymce';
 import { showErrDialog,showDialog } from "@/js/utils/Utils.js";
 import { DialogModel } from "@/js/utils/Model.js";
+import {save_article_api} from "@/js/api/getData.js"
+import router from "@/router/index.js";
 
 export default {
   name: "NewArticle",
@@ -55,19 +70,44 @@ export default {
 
     const title = ref('');
 
+    const catagory = ref('');
+    const catagory_option = reactive([
+        {
+          "label":"option1",
+          "value":"v1"
+        },
+        {
+          "label":"option2",
+          "value":"v2"
+        }
+    ])
+
     // 新增文章
-    const add = () =>{
-      console.log(state.content)
+    const add = async() =>{
+      
+      var req = {
+        "memberToken": "toooken",
+        "title": title.value,
+        "cate": catagory.value,
+        "content": state.content
+      }
 
-        let dialogModel = new DialogModel();
-        dialogModel.title = "失敗";
-        dialogModel.content = `請重新登入`;
-        dialogModel.doConfirm = function(){};
-        dialogModel.clickCloseIcon = function(){};
+      let res = await save_article_api(JSON.parse(JSON.stringify(req)));
 
-        return showDialog(basicDialog, dialogModel);
+      if (res instanceof Error) {
+        return showErrDialog(basicDialog, res.toString());
+      }
 
-      //showErrDialog(basicDialog, '我錯了');
+      router.push('/member/myarticle')
+
+      // let dialogModel = new DialogModel();
+      // dialogModel.title = "失敗";
+      // dialogModel.content = `請重新登入`;
+      // dialogModel.doConfirm = function(){};
+      // dialogModel.clickCloseIcon = function(){};
+
+      // return showDialog(basicDialog, dialogModel);
+
     }
 
 
@@ -75,7 +115,9 @@ export default {
     return {
       state,
       title,
-      add
+      add,
+      catagory,
+      catagory_option
 
     };
   },

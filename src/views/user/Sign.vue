@@ -16,8 +16,13 @@
 
 <script>
 import { watch, onMounted, computed, ref, inject ,provide ,reactive} from "vue";
-import InputWidget from "@/views/widget/InputWidget.vue";
-import {inputWidgetModule} from "@/js/module/widgetModule.js"
+import InputWidget from "@/views/widget/dataWidgets/InputWidget.vue";
+import {widgetModule} from "@/js/module/widgetModule.js"
+import {sign_in_api} from "@/js/api/getData.js"
+import router from "@/router/index.js";
+
+
+
 
 export default {
   name: "Sign",
@@ -29,12 +34,12 @@ export default {
     setup(props, {emit}) {
 
     const field_all = reactive({
-        name: ref(new inputWidgetModule('名稱','name')),
-        account:ref(new inputWidgetModule('帳號','account')),
-        password: ref(new inputWidgetModule('密碼','password')),
-        password_recheck: ref(new inputWidgetModule('密碼(第二次確認)','password_recheck')),
-        mail: ref(new inputWidgetModule('信箱','mail')),
-        phone: ref(new inputWidgetModule('電話','phone')),
+        name: ref(new widgetModule('名稱','name')),
+        account:ref(new widgetModule('帳號','account')),
+        password: ref(new widgetModule('密碼','password')),
+        password_recheck: ref(new widgetModule('密碼(第二次確認)','password_recheck')),
+        mail: ref(new widgetModule('信箱','mail')),
+        phone: ref(new widgetModule('電話','phone')),
     })
 
 
@@ -81,7 +86,20 @@ export default {
     }
 
     //註冊
-    const signUp = () =>{
+    const signUp = async() =>{
+        var req = {
+            "account": field_all['account']['value'],
+            "password": field_all['password']['value'],
+        }
+        
+        let res = await sign_in_api(JSON.parse(JSON.stringify(req)));
+
+        if (res instanceof Error) {
+           return showErrDialog(basicDialog, res.toString());
+
+        }
+
+        router.push('/login')
 
     }
 

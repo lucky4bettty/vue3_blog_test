@@ -2,19 +2,21 @@
 
   <div class="member">
 
-    <span>帳號：</span>
-    <el-input v-model="account" placeholder=""></el-input>
+    <div class="edit_btn">
+       <el-button class="class_elbtn" @click="editBtn" type="primary">
+          編輯
+       </el-button>
+    </div>
 
-    <span>信箱：</span>
-    <el-input v-model="email" placeholder=""></el-input>
+    <span class="cont">帳號：</span>
+    {{account}}
+    <span class="cont">信箱：</span>
+    {{email}}
 
-    <span>介紹：</span>
-    <el-input
-    type="textarea"
-    :rows="10"
-    placeholder="请输入内容"
-    v-model="textarea">
-    </el-input>
+    <span class="cont">介紹：</span>
+    {{textarea}}
+
+
 
 
   </div>
@@ -23,25 +25,31 @@
 
 <script>
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
+import router from "@/router/index.js";
 
 export default defineComponent({
   name: "Information",
 
   setup(props, {emit}) {
-    var textarea = ref("");
-    var account = ref("");
-    var email = ref("");
+    var textarea = ref("巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
+    var account = ref("我是帳號");
+    var email = ref("aa@gmail.com");
     
     onMounted(() => {
 
     });
+
+    const editBtn = () =>{
+        router.push('/member/informationedit')
+    }
 
 
 
     return {
       textarea,
       account,
-      email
+      email,
+      editBtn
     };
   },
 });
@@ -49,3 +57,22 @@ export default defineComponent({
 
 <style lang="scss" src="@/style/vue-common.scss" scoped></style>
 <style lang="scss" src="@/style/member/information.scss" scoped></style>
+
+<style>
+.edit_btn{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end ;
+  margin-top:30px;
+}
+
+.class_elbtn{ 
+  width: 100px;
+}
+
+.cont{
+  padding-bottom: 5px;
+  border-bottom : 1px gray solid ; 
+}
+
+</style>

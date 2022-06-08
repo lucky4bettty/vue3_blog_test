@@ -30,6 +30,12 @@ const routes = [
       import("@/views/member/Information.vue"),
   },
   {
+    path: "/member/informationedit",
+    name: "InformationEdit",
+    component: () =>
+      import("@/views/member/InformationEdit.vue"),
+  },
+  {
     path: "/member/myarticle",
     name: "myArticle",
     component: () =>

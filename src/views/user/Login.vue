@@ -31,10 +31,10 @@
 
 <script>
 import { watch, onMounted, computed, ref, inject ,provide , reactive} from "vue";
-import InputWidget from "@/views/widget/InputWidget.vue";
-import {inputWidgetModule} from "@/js/module/widgetModule.js"
+import InputWidget from "@/views/widget/dataWidgets/InputWidget.vue";
+import {widgetModule} from "@/js/module/widgetModule.js"
 import router from "@/router/index.js";
-import {login_api} from "@/js/api/getData.js"
+import {login_api,member_info_api} from "@/js/api/getData.js"
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
 
 
@@ -50,8 +50,8 @@ export default {
 
 
     const field_all = reactive({
-        account:ref(new inputWidgetModule('帳號','account')),
-        password: ref(new inputWidgetModule('密碼','password')),
+        account:ref(new widgetModule('帳號','account')),
+        password: ref(new widgetModule('密碼','password')),
     })
 
 
@@ -96,6 +96,7 @@ export default {
     //登入
     const loginBtn = async()=>{
         
+        // 登入api
         var req = { 
             "account": field_all['account'],
             "password": field_all['password']
@@ -103,11 +104,28 @@ export default {
         
         let res = await login_api(JSON.parse(JSON.stringify(req)));
 
-
         if (res instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
 
         }
+
+        // 取得個人資料api
+        var req_member = { 
+            "memberToken": res.memberToken
+        } ;
+        
+        let res_member = await member_info_api(JSON.parse(JSON.stringify(req)));
+
+        if (res_member instanceof Error) {
+           return showErrDialog(basicDialog, res.toString());
+
+        }
+
+        // let storage = new Storage();
+        // storage.setItem({
+        //         name:"vue3_blog_account",
+        //         value:"前端林三哥"
+        // })
 
         router.push('/member/information')
     }

@@ -1,6 +1,10 @@
 
-class inputWidgetModule {
+class widgetModule {
     constructor(label,fieldName) {
+        /**
+         *  欄位型態
+         */
+        this.docNo = '' ;
         /**
          * 欄位值
          */
@@ -22,5 +26,5 @@ class inputWidgetModule {
 }
 
 export{
-    inputWidgetModule
+    widgetModule
 }
