@@ -72,7 +72,7 @@ const router = createRouter({
 //判斷是否驗證
 router.beforeEach((to, from, next) => {
 
-  store.dispatch("nowRoute/switchPage" , to.fullPath  ) // 存url進store
+  store.dispatch("nowRoute/switchPage" , to) // 存url進store
 
   next();
 

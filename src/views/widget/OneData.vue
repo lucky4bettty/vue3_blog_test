@@ -5,7 +5,7 @@
               <!-- 收藏 -->
               <div class="article_like">
                 <div class="num">
-                  {{props.onedata.like}}
+                  {{props.onedata.likeAmount}}
                 </div>
                 <div class="word">
                   like
@@ -14,7 +14,7 @@
               <!-- 回覆 -->
               <div class="article_reply">
                 <div class="num">
-                  {{props.onedata.reply}}
+                  {{props.onedata.replyAmount}}
                 </div>
                 <div class="word">
                   回答
@@ -26,7 +26,7 @@
                   {{props.onedata.title}}
                   </div>
                 <span class="article_author">
-                  {{props.onedata.author}}．{{props.onedata.date}}
+                  {{props.onedata.author}}．{{props.onedata.creatTime}}
                 </span>
               </div>
             </div>
@@ -58,17 +58,17 @@ export default {
           default:""
         },
         //發布日期
-        date:{
+        creatTime:{
           type:String,
           default:""
         },
         //喜愛
-        like:{
+        likeAmount:{
           type:Number,
           default:0
         },
         //回答
-        reply:{
+        replyAmount:{
           type:Number,
           default:0
         },

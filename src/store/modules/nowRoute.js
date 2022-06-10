@@ -2,12 +2,15 @@ export default {
     namespaced: true, // !!!!一定要加
     state: {
       path: '',
+      pathName:''
  
     },
 
     mutations: {
         CHANGEVAL(state , payload){
-            state.path=payload ;
+            state.path=payload.fullPath ;
+            state.pathName=payload.name ;
+
         }
 
     },

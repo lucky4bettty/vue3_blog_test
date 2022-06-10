@@ -10,7 +10,8 @@
             "likeAmount": 6,
             "isFavorite": true,
             "creatTime": "2000-01-01 01:01:01",
-            "modifyTime": "2000-01-01 01:01:01"
+            "modifyTime": "2000-01-01 01:01:01",
+            "replyAmount":2
         },
         {
             "title": "第2篇",
@@ -20,7 +21,8 @@
             "likeAmount": 6,
             "isFavorite": true,
             "creatTime": "2000-01-02 01:01:01",
-            "modifyTime": "2000-01-02 01:01:01"
+            "modifyTime": "2000-01-02 01:01:01",
+            "replyAmount":1
         }
     ]
 }
