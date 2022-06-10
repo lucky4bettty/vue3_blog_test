@@ -1,5 +1,5 @@
 <template>
-          <div class="article_one">
+          <div class="article_one" @click="goDetail()">
             <!-- 內容 -->
             <div class="d-flex">
               <!-- 收藏 -->
@@ -40,6 +40,7 @@
 
 <script>
 import { watch, onMounted, computed, ref, inject } from "vue";
+import router from "@/router/index.js";
 
 export default {
   name: "OneData",
@@ -76,7 +77,13 @@ export default {
         id:{
           type:String,
           default:""
+        },
+        //文章id
+        "articleId":{
+          type:String,
+          default:""
         }
+
       }
     },
     canedit:{
@@ -93,6 +100,17 @@ export default {
       
     });
 
+    const goDetail = async ()=>{
+      if(!props.canedit){
+        console.log(props.onedata.articleId)
+        var url = `/member/articleview/${props.onedata.articleId}`;
+        router.push(url);
+      }else{
+        console.log('連去編輯頁')
+      }
+
+    }
+
 
 
 
@@ -101,6 +119,7 @@ export default {
 
     return {
       props,
+      goDetail
 
 
     };

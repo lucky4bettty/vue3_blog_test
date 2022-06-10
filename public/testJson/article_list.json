@@ -11,7 +11,8 @@
             "isFavorite": true,
             "creatTime": "2000-01-01 01:01:01",
             "modifyTime": "2000-01-01 01:01:01",
-            "replyAmount":2
+            "replyAmount":2,
+            "articleId":"1222"
         },
         {
             "title": "第2篇",
@@ -22,7 +23,8 @@
             "isFavorite": true,
             "creatTime": "2000-01-02 01:01:01",
             "modifyTime": "2000-01-02 01:01:01",
-            "replyAmount":1
+            "replyAmount":1,
+            "articleId":"3333"
         }
     ]
 }

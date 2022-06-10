@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <div class="home_cont">
-        <h2>XX文章</h2>
+        <h2>{{title}}</h2>
         <!-- 多筆ＬＩＳＴ -->
         <div class="article_all">
 
@@ -53,11 +53,13 @@ export default {
     var pc_dataPage = ref(30)
     var pageData ; // 本頁的所有資料
     var showData = ref([]);
+    var title = ref('');
     const route = useRoute();
 
     onMounted(() => {
       pageData= new PageData() ;
-      pageData.search_condition.title = route.params.type?route.params.type:'';
+      pageData.search_condition.cate = route.params.type?route.params.type:'';
+      title.value = pageData.search_condition.cate ;
       pageData.search() ;
 
 
@@ -77,10 +79,17 @@ export default {
 
         // 切路由
     watch(showPage, (path) => {
-      console.log("本頁:" + path);
-      var nowTheme = store.state.nowRoute.pathName.replace('/','') ;
-      pageData.search_condition.title = nowTheme;
+      var pathlist = path.split('/');
+      pathlist.shift() ;
+      var nowTheme = pathlist[0] !== 'null'?pathlist[0] :'';
+      var nowTitle= pathlist.length > 1 ?pathlist[1]: '';
+      title.value = pathlist[0] !== 'null'?pathlist[0] :'' ;
+
+      pageData.search_condition.cate = nowTheme;
+      pageData.search_condition.title = nowTitle ;
       pageData.search_condition.pageNow = '1' ;
+      currentPage.value = 1 ;
+
       pageData.search() ;
 
 
@@ -94,6 +103,7 @@ export default {
     var PageData = function (o) {
       this.showhData=[], // 頁面show出來的資料
       this.search_condition={// 查詢條件
+        'cate':'',
         'title':'',
         'pageNow':'1',
         'pageSize':'20'
@@ -123,6 +133,7 @@ export default {
       pc_dataPage,
       handleCurrentChange,
       showData,
+      title
       
 
     };

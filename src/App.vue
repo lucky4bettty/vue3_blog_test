@@ -76,7 +76,7 @@
       <input class="now_input" v-model="search_input" placeholder="搜尋主題" />
     </div>
     
-    <el-button  class="search_btn">查詢</el-button>
+    <el-button @click="searchBtn"  class="search_btn">查詢</el-button>
       
   </div>
 
@@ -111,8 +111,11 @@ export default {
       showSearch.value = isShow ;
     }
     
+    // 查詢文章
     const searchBtn = () =>{
-      console.log(state.content)
+      var title = search_input.value ;
+      
+      router.push(`/null/${title}`); // 成功後跳轉route
     }
 
     // 查詢框顯示隱藏

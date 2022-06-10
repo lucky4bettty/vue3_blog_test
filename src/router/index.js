@@ -4,7 +4,7 @@ import store from "@/store/index.js";
 
 const routes = [
   {
-    path: "/:type?/",
+    path: "/:type?/:title?",
     name: "Home",
     component: Home,
   },
