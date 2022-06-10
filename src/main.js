@@ -10,6 +10,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import installElementPlus from './plugins/element'
 import ShowDialog from '@/js/utils/BindingElement'
+import 'default-passive-events' 
 
 
 
