@@ -14,6 +14,7 @@ export default {
         },
         CHANGEVAL_USERDETAIL(state , payload){
             state.userDetail=payload ;
+            sessionStorage.setItem('userDetail', payload);
         }
 
     },
@@ -25,5 +26,6 @@ export default {
             context.commit('CHANGEVAL_USERDETAIL',data) // 在更新狀態...錯誤訊息之類的??
         },
 
-    }
+    },
+
 }

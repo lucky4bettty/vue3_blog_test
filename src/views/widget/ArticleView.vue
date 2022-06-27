@@ -90,9 +90,12 @@
 
 </template>
 <script>
-import { ref, defineComponent, onMounted,watch,inject,provide} from "vue";
+import { ref, defineComponent, onMounted,watch,inject,provide,reactive} from "vue";
 import { useRoute, useRouter } from "vue-router";
-import Reply from "@/views/widget/Reply.vue"
+import Reply from "@/views/widget/Reply.vue";
+import {article_detail_api} from "@/js/api/getData.js"
+import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
+
 
 export default {
   name: "ArticleView",
@@ -103,10 +106,11 @@ export default {
       const route = useRoute();
       const router = useRouter();
       var articleId ; // 文章id
+      var showData = reactive({});
     
     onMounted(() => {
         articleId = route.params.id ;
-        console.log(route.params.id)
+        getArticleDetail() ;
         
     });
 
@@ -115,6 +119,21 @@ export default {
         // imgbase64:"TTT"
     }
 
+    // 取文章細節
+    async function getArticleDetail (){
+        var req = {
+            "memberToken": "toooken",
+            "articleId": "2e71a354180000002496bd7d7b8d84ed"
+        } ;
+        
+        let res = await article_detail_api(JSON.parse(JSON.stringify(req)));
+
+        if (res instanceof Error) {
+           return showErrDialog(basicDialog, res.toString());
+        }
+        showData = res ;
+    }
+    
     // 回覆按下送出
     provide("submitReply", submitReply);
     function submitReply(data){

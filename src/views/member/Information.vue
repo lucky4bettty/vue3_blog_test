@@ -10,8 +10,8 @@
 
     <span class="cont">帳號：</span>
     {{account}}
-    <span class="cont">信箱：</span>
-    {{email}}
+    <!-- <span class="cont">信箱：</span>
+    {{email}} -->
 
     <span class="cont">介紹：</span>
     {{textarea}}
@@ -26,6 +26,7 @@
 <script>
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
 import router from "@/router/index.js";
+import store from "@/store/index.js";
 
 export default defineComponent({
   name: "Information",
@@ -36,6 +37,11 @@ export default defineComponent({
     var email = ref("aa@gmail.com");
     
     onMounted(() => {
+      // console.log('取得帳號');
+      // console.log(store.state.login.userDetail) ;
+      var myUserData = store.state.login.userDetail ;
+      textarea.value = myUserData.introduce ;
+      account.value = myUserData.account ;
 
     });
 

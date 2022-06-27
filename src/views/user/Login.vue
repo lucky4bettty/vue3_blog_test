@@ -36,6 +36,8 @@ import {widgetModule} from "@/js/module/widgetModule.js"
 import router from "@/router/index.js";
 import {login_api,member_info_api} from "@/js/api/getData.js"
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
+import store from "@/store/index.js";
+
 
 
 export default {
@@ -114,12 +116,13 @@ export default {
             "memberToken": res.memberToken
         } ;
         
-        let res_member = await member_info_api(JSON.parse(JSON.stringify(req)));
+        let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
 
         if (res_member instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
-
         }
+
+        store.dispatch("login/put_userdDetail", res_member)
 
         // let storage = new Storage();
         // storage.setItem({

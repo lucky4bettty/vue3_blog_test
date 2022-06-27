@@ -1,0 +1,31 @@
+{
+    "result": "0",
+    "message": "執行成功",
+    "article": {
+        "title":"我是標題",
+        "content":"我是內容",
+        "author":"皮卡兵乓",
+        "likeAmount":5,
+        "isFavorite":true,
+        "creatTime":"2020-02-02",
+        "modifyTime":"2020-03-02",
+        "replyList":[
+            {
+                "account":"fiveline",
+                "name":"五歪歪",
+                "content":"我是回覆",
+                "likeAmount":10,
+                "replyList":[
+                    {
+                        "account":"mio",
+                        "name":"喵喵",
+                        "content":"我是回覆的回覆",
+                        "likeAmount":2
+                        
+                    }
+                ]
+            }
+        ]
+
+    }
+}

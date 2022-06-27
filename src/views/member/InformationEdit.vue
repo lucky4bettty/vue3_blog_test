@@ -11,8 +11,8 @@
     <span>帳號：</span>
     <el-input v-model="field_all['account']['value']" placeholder=""></el-input>
 
-    <span>信箱：</span>
-    <el-input v-model="field_all['email']['value']" placeholder=""></el-input>
+    <!-- <span>信箱：</span>
+    <el-input v-model="field_all['email']['value']" placeholder=""></el-input> -->
 
     <span>舊密碼：</span>
     <el-input v-model="field_all['oldPassword']['value']" placeholder=""></el-input>
@@ -39,7 +39,9 @@ import {member_edit_api} from "@/js/api/getData.js"
 import router from "@/router/index.js";
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
 import InputWidget from "@/views/widget/dataWidgets/InputWidget.vue";
-import {widgetModule} from "@/js/module/widgetModule.js"
+import {widgetModule} from "@/js/module/widgetModule.js";
+import store from "@/store/index.js";
+
 
 
 export default defineComponent({
@@ -48,21 +50,25 @@ export default defineComponent({
     InputWidget
   },
   setup(props, {emit}) {
-    var textarea = ref("");
-    var account = ref("");
-    var email = ref("");
-    
-    onMounted(() => {
 
-    });
 
-    const field_all = reactive({
+    var field_all = reactive({
         account:ref(new widgetModule('帳號','account')),
         password: ref(new widgetModule('密碼','password')),
         oldPassword: ref(new widgetModule('舊密碼','oldPassword')),
         email:ref(new widgetModule('信箱','email')),
         introduce: ref(new widgetModule('介紹','introduce')),
-    })
+      });;
+    
+    onMounted(() => {
+      var myUserData = store.state.login.userDetail ;
+
+
+
+
+    });
+
+
 
     const editBtn = async()=>{
       var req = {
@@ -88,9 +94,6 @@ export default defineComponent({
 
 
     return {
-      textarea,
-      account,
-      email,
       field_all,
       editBtn
     };
