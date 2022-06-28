@@ -6,11 +6,12 @@
     <!-- 上方頁面資料 -->
     <div class="articleview_bg">    
         <div class="myData">
-            作者：ＯＯＯ   <span class="time">2022.04.01</span> 
+            作者：{{showData.author}} 
+            <span class="time">{{showData.creatTime}}</span> 
         </div>
 
         <div class="myData">
-            標題：？？？？
+            標題：{{showData.title}}
         </div>
 
         <div class="addlove">
@@ -25,7 +26,7 @@
 
         
         <!-- html 注入 -->
-        <div class="myHtml" v-html="cont">
+        <div class="myHtml" v-html="showData.content">
 
         </div>
 
@@ -45,7 +46,7 @@
     <div class="reply articleview_bg">
         
 
-        <div class="oneReply">
+        <div class="oneReply" v-for="(item ,index) in showData.replyList" :key="index">
             <!-- 標題 -->
             <div class="title_all">
                 <!-- 照片 -->
@@ -57,21 +58,23 @@
                 <!-- 名稱＋日期 -->
                 <div class="title_info">
                     <div class="name">
-                        小小兵
+                        {{item.name}}
                     </div>
-                    <div class="date">
+                    <!-- <div class="date">
                         2022/04/01
-
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
             <!-- 內容 -->
-            <div v-html="cont">
+            <div v-html="item.content">
 
             </div>
 
-            <!-- 回覆框框 -->
+            <!-- 回覆框框_他人回覆 -->
+            <ReplyShow :onedata="item.replyList"></ReplyShow>
+
+            <!-- 回覆框框_我的回覆 -->
             <Reply :onedata="testreply"></Reply>
         </div>
 
@@ -93,6 +96,7 @@
 import { ref, defineComponent, onMounted,watch,inject,provide,reactive} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Reply from "@/views/widget/Reply.vue";
+import ReplyShow from "@/views/widget/ReplyShow.vue";
 import {article_detail_api} from "@/js/api/getData.js"
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
 
@@ -100,13 +104,21 @@ import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
 export default {
   name: "ArticleView",
   components: {
-    Reply
+    Reply,
+    ReplyShow
   },
   setup(props, {emit}) {
       const route = useRoute();
       const router = useRouter();
       var articleId ; // 文章id
-      var showData = reactive({});
+      var showData = ref({
+        'author':'',
+        'creatTime':'',
+        'title':'',
+        'content':'',
+        'replyList':[]
+      });
+
     
     onMounted(() => {
         articleId = route.params.id ;
@@ -131,7 +143,7 @@ export default {
         if (res instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
         }
-        showData = res ;
+        showData.value = res.article ;
     }
     
     // 回覆按下送出
@@ -146,7 +158,10 @@ export default {
 
     return {
         cont,
-        testreply
+        testreply,
+        showData,
+        
+        
 
     };
   },
@@ -185,6 +200,10 @@ export default {
     width:100%;
     display: flex;
     justify-content: flex-end;
+}
+
+.title_all{
+    margin-top:10px;
 }
 
 
