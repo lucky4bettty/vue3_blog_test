@@ -4,7 +4,15 @@ export default {
     namespaced: true, // !!!!一定要加
     state: {
         memberToken: '',
-        userDetail:{}
+        userDetail:{
+            "result": "0",
+            "message": "執行成功",
+            "account": "kl",
+            "name":"林ＯＯ",
+            "birthday":"1999-03-03",
+            "gender":"1",
+            "introduce":"大家好 我是林ＯＯ jskldjfksfmls"
+        }
  
     },
 

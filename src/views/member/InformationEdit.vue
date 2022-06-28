@@ -58,14 +58,12 @@ export default defineComponent({
         oldPassword: ref(new widgetModule('舊密碼','oldPassword')),
         email:ref(new widgetModule('信箱','email')),
         introduce: ref(new widgetModule('介紹','introduce')),
-      });;
+    });
     
     onMounted(() => {
       var myUserData = store.state.login.userDetail ;
-
-
-
-
+      field_all['account']['value'] = myUserData.account ;
+      field_all['introduce']['value'] = myUserData.introduce ;
     });
 
 
