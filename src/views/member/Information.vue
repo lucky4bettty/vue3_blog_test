@@ -10,7 +10,11 @@
 
     <div class="img_div">
       <div class="title_img">
-          <img src="@/images/my.jpeg" alt="">
+          <!-- <img src="@/images/my.jpeg" alt=""> -->
+          <!-- 預設 -->
+          <img v-if="imageUrl==''" src="@/images/my.jpeg" alt="">
+          <!-- 上傳 -->
+          <img v-else :src="imageUrl" alt="" class="customerImg mt-0">
       </div>
     </div>
 
@@ -41,6 +45,8 @@ export default defineComponent({
     var textarea = ref("");
     var account = ref("");
     var email = ref("");
+    const imageUrl = ref('');
+
     
     onMounted(() => {
       // console.log('取得帳號');
@@ -61,7 +67,8 @@ export default defineComponent({
       textarea,
       account,
       email,
-      editBtn
+      editBtn,
+      imageUrl
     };
   },
 });

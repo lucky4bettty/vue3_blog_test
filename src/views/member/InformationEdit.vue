@@ -84,18 +84,27 @@ export default defineComponent({
       var myUserData = store.state.login.userDetail ;
       field_all['account']['value'] = myUserData.account ;
       field_all['introduce']['value'] = myUserData.introduce ;
+
+
     });
 
 
-
+    // 儲存
     const editBtn = async()=>{
       var req = {
         "memberToken": "toooken",
         "account": field_all['account']['value'],
-        "email":field_all['email']['value'],
         "password": field_all['password']['value'],
         "oldPassword": field_all['oldPassword']['value']
       }
+      if(imageUrl.value){ // 圖檔轉為base64
+					const img = await getBase64Image(imageUrl.value).then(res=>{
+							var dataBase64 = res.base64.replace(/^data:.*?;base64,/, "");
+							return dataBase64;
+					})
+      }
+
+
         
         let res = await member_edit_api(JSON.parse(JSON.stringify(req)));
 
@@ -129,6 +138,32 @@ export default defineComponent({
     const imgDelete = ()=>{
       imageUrl.value='';
     }
+
+    // url轉base64
+    function getBase64Image(url) {
+					const img = new Image()
+					img.setAttribute("crossOrigin", 'anonymous');
+					//如果需要兼容ios，这两个顺序一定不能换，先设置crossOrigin后设置src
+					img.src = url;
+					return new Promise((resolve, reject) => {
+							img.onload = () => {
+							//canvas基本配置
+							const canvas = document.createElement("canvas");
+							canvas.width = img.width;
+							canvas.height = img.height;
+							const ctx = canvas.getContext("2d");
+							ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+									resolve({
+											success: true,
+											//canvas.toDataURL的方法将图片的绝对路径转换为base64编码
+											base64: canvas.toDataURL()
+									})
+							}
+							img.onerror = () => {
+									reject({ success: false })
+							}
+					})
+			}
 
 
 
