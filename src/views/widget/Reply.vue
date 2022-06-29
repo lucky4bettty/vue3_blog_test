@@ -15,10 +15,20 @@
 
 <script>
 import { watch, onMounted, computed, ref, inject } from "vue";
+import {reply_article_api} from "@/js/api/getData.js"
+import { DialogModel } from "@/js/utils/Model.js";
+import { showErrDialog, showDialog } from "@/js/utils/Utils.js";
+
+
+
 
 export default {
   name: "Reply",
   props: {
+    submitType:{
+       type:String,
+       default:''
+    },
     onedata:{
       type:Object,
       default:{
@@ -28,11 +38,18 @@ export default {
           }
       }
     },
+    replydata:{
+        type:Object,
+        default:null
+    }
+
 
 
 
   },
     setup(props, {emit}) {
+    const basicDialog = inject("basicDialog");
+
     const myReply = ref('');  //  回覆內容
     const imageUrl = ref(''); //  圖片
     const submitReply = inject("submitReply");
@@ -54,9 +71,41 @@ export default {
 
 
     //回覆按下送出
-    const replySubmit = () =>{
-        console.log(myReply.value)
-        submitReply("我送出")
+    const replySubmit = async () =>{
+        // console.log(myReply.value)
+        var req ;
+        if(props.submitType ==="article"){ // 要回覆的為文章
+            req = {
+                "memberToken": "toooken",
+                "articleId": props.onedata.id,
+                "content": myReply.value,
+            }
+        }else{ // 要回覆的為回覆
+            req = {
+                "memberToken": "toooken",
+                "articleId": props.onedata.id,
+                "content": myReply.value,
+                "replyId":props.replydata.id
+            }
+        }
+
+        let res = await reply_article_api(JSON.parse(JSON.stringify(req)));
+
+        if (res instanceof Error) {
+          return showErrDialog(basicDialog, res.toString());
+        }
+
+        let dialogModel = new DialogModel();
+        dialogModel.icon = "success"
+        dialogModel.title = "成功";
+        dialogModel.content = `已成功回覆`;
+        // dialogModel.doConfirm = ;
+        // dialogModel.clickCloseIcon = logout;
+
+        showDialog(basicDialog, dialogModel);
+
+
+        submitReply(true);
     }
 
 

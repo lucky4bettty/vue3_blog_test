@@ -43,8 +43,6 @@ export default {
     const allReply = ref([]);
 
     onMounted(() => {
-        console.log('回覆們！！！！！');
-        console.log(props.onedata)
 
         allReply.value = props.onedata ;
 

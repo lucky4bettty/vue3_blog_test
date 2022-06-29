@@ -31,7 +31,7 @@
         </div>
 
         <!-- 回覆框框 -->
-        <Reply :onedata="testreply"></Reply>
+        <Reply :onedata="showData" submitType="article"></Reply>
 
         
 
@@ -75,7 +75,7 @@
             <ReplyShow :onedata="item.replyList"></ReplyShow>
 
             <!-- 回覆框框_我的回覆 -->
-            <Reply :onedata="testreply"></Reply>
+            <Reply :onedata="showData" :replydata="item" submitType="reply"></Reply>
         </div>
 
     </div>
@@ -148,9 +148,12 @@ export default {
     
     // 回覆按下送出
     provide("submitReply", submitReply);
+
     function submitReply(data){
         console.log("－－－外面－－－")
-        console.log(data)
+        if(data){ // 成功傳送後 重新刷新頁面
+            getArticleDetail()
+        }
     }
 
 
