@@ -8,6 +8,24 @@
        </el-button>
     </div>
 
+    <div class="img_div">
+      <div class="title_img">
+          <!-- <img src="@/images/my.jpeg" alt=""> -->
+          <!-- 預設 -->
+          <img v-if="imageUrl==''" src="@/images/my.jpeg" alt="">
+          <!-- 上傳 -->
+          <img v-else :src="imageUrl" alt="" class="customerImg mt-0">
+      </div>
+    </div>
+
+    <div class="img_div">
+        <!-- <el-button class="class_elbtn" @click="editBtn" type="primary">上傳</el-button> -->
+        <el-upload action="" :auto-upload="false" :show-file-list="false" :on-change="imgUpload">
+            <el-button class="class_img_btn"  type="primary">上傳</el-button>
+        </el-upload>
+        <el-button class="class_img_btn" @click="imgDelete" type="primary">刪除</el-button>
+    </div>
+
     <span>帳號：</span>
     <el-input v-model="field_all['account']['value']" placeholder=""></el-input>
 
@@ -51,6 +69,8 @@ export default defineComponent({
   },
   setup(props, {emit}) {
 
+    const imageUrl = ref('');
+    const basicDialog = inject("basicDialog");
 
     var field_all = reactive({
         account:ref(new widgetModule('帳號','account')),
@@ -89,11 +109,35 @@ export default defineComponent({
 
     }
 
+    // 圖片上傳
+    const imgUpload = (file)=>{
+      console.log(file);
+      if(file.raw.type != 'image/jpeg'){
+				return showErrDialog(basicDialog, { hint: '檔案格式錯誤' });
+			}
+
+			var totalSizeMB = (file.size / Math.pow(1024,2)).toFixed(1);
+				if(totalSizeMB > 2.5){
+				return showErrDialog(basicDialog, { hint:'檔案大小不得大於 2.5 MB' });
+			}
+
+			imageUrl.value = URL.createObjectURL(file.raw);
+
+    }
+
+    //圖片刪除
+    const imgDelete = ()=>{
+      imageUrl.value='';
+    }
+
 
 
     return {
       field_all,
-      editBtn
+      editBtn,
+      imgUpload,
+      imgDelete,
+      imageUrl
     };
   },
 });
@@ -110,6 +154,29 @@ export default defineComponent({
   .class_elbtn{ 
     width: 100px;
   }
+  /* 頭像圖 */
+  .img_div{
+    width: 100%;
+    display: flex;
+    justify-content: center ;
+  }
+  .title_img{
+          max-width: 200px;
+          max-height: 200px;
+          border-radius: 50%;
+          background-color: pink;
+          overflow:hidden;
+  }
+  .title_img img{
+          width: 200px;
+          height:200px;
+          object-fit:fill
+  }
+  .class_img_btn{
+    width: 100px;
+    margin:10px !important;
+  }
+
 </style>
 
 <style lang="scss" src="@/style/vue-common.scss" scoped></style>

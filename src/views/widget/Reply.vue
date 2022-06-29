@@ -145,8 +145,8 @@ export default {
     }
     
     .title_img img{
-        width: 100%;
-        height:100%;
+        width: 30px;
+        height:30px;
         object-fit:fill
     }
     

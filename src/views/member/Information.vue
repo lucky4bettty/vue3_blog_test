@@ -8,6 +8,12 @@
        </el-button>
     </div>
 
+    <div class="img_div">
+      <div class="title_img">
+          <img src="@/images/my.jpeg" alt="">
+      </div>
+    </div>
+
     <span class="cont">帳號：</span>
     {{account}}
     <!-- <span class="cont">信箱：</span>
@@ -32,9 +38,9 @@ export default defineComponent({
   name: "Information",
 
   setup(props, {emit}) {
-    var textarea = ref("巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉");
-    var account = ref("我是帳號");
-    var email = ref("aa@gmail.com");
+    var textarea = ref("");
+    var account = ref("");
+    var email = ref("");
     
     onMounted(() => {
       // console.log('取得帳號');
@@ -79,6 +85,24 @@ export default defineComponent({
 .cont{
   padding-bottom: 5px;
   border-bottom : 1px gray solid ; 
+}
+/* 頭像圖 */
+.img_div{
+  width: 100%;
+  display: flex;
+  justify-content: center ;
+}
+.title_img{
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 50%;
+        background-color: pink;
+        overflow:hidden;
+}
+.title_img img{
+        width: 200px;
+        height:200px;
+        object-fit:fill
 }
 
 </style>
