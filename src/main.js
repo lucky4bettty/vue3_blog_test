@@ -9,6 +9,7 @@ import $ from 'jquery';
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import installElementPlus from './plugins/element'
+import directiveAll from './plugins/directiveAll';
 import ShowDialog from '@/js/utils/BindingElement'
 import 'default-passive-events' 
 
@@ -17,6 +18,7 @@ import 'default-passive-events'
 window.jQuery = window.$ = $;
 const app = createApp(App)
 installElementPlus(app)
+directiveAll(app) // 全局註冊directive
 app.use(store).use(router).use(VueAxios, axios).use(ShowDialog).mount("#app");
 
 import "@/style/vue-common.scss";
