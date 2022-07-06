@@ -7,7 +7,7 @@
     <div class="articleview_bg">    
         <div class="myData">
             作者：{{showData.author}} 
-            <span class="time">{{showData.creatTime}}</span> 
+            <span class="time" v-timeFormat="showData.creatTime">{{showData.creatTime}}</span> 
         </div>
 
         <div class="myData">

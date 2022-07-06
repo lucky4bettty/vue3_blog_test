@@ -1,6 +1,6 @@
 <template>
 
-  <div class="member">
+  <div class="information">
 
     <div class="edit_btn">
        <el-button class="class_elbtn" @click="editBtn" type="primary">
@@ -190,24 +190,24 @@ export default defineComponent({
     width: 100px;
   }
   /* 頭像圖 */
-  .img_div{
+  .information .img_div{
     width: 100%;
     display: flex;
     justify-content: center ;
   }
-  .title_img{
+  .information .title_img{
           max-width: 200px;
           max-height: 200px;
           border-radius: 50%;
           background-color: pink;
           overflow:hidden;
   }
-  .title_img img{
+  .information .title_img img{
           width: 200px;
           height:200px;
           object-fit:fill
   }
-  .class_img_btn{
+  .information .class_img_btn{
     width: 100px;
     margin:10px !important;
   }
