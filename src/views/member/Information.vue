@@ -20,6 +20,16 @@
 
     <span class="cont">帳號：</span>
     {{account}}
+
+    <!-- 性別 -->
+    <span class="cont">性別：</span>
+    <div>
+      <el-radio-group v-model="gender" disabled class="ml-4 radioStyle">
+        <el-radio label="1" size="large">男</el-radio>
+        <el-radio label="2" size="large">女</el-radio>
+      </el-radio-group>
+    </div>
+
     <!-- <span class="cont">信箱：</span>
     {{email}} -->
 
@@ -45,6 +55,7 @@ export default defineComponent({
     var textarea = ref("");
     var account = ref("");
     var email = ref("");
+    var gender = ref("1");
     const imageUrl = ref('');
 
     
@@ -54,6 +65,7 @@ export default defineComponent({
       var myUserData = store.state.login.userDetail ;
       textarea.value = myUserData.introduce ;
       account.value = myUserData.account ;
+      gender.value = myUserData.gender ;
 
     });
 
@@ -67,6 +79,7 @@ export default defineComponent({
       textarea,
       account,
       email,
+      gender,
       editBtn,
       imageUrl
     };
@@ -110,6 +123,11 @@ export default defineComponent({
         width: 200px;
         height:200px;
         object-fit:fill
+}
+
+/* radio */
+.information .radioStyle label{
+  margin-left:10px;
 }
 
 </style>

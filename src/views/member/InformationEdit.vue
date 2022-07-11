@@ -38,6 +38,15 @@
     <span>新密碼：</span>
     <el-input v-model="field_all['password']['value']" placeholder=""></el-input>
 
+    <!-- 性別 -->
+    <span>性別：</span>
+    <div>
+      <el-radio-group v-model="gender" class="ml-4 radioStyle">
+        <el-radio label="1" size="large">男</el-radio>
+        <el-radio label="2" size="large">女</el-radio>
+      </el-radio-group>
+    </div>
+
     <span>介紹：</span>
     <el-input
     type="textarea"
@@ -71,6 +80,7 @@ export default defineComponent({
 
     const imageUrl = ref('');
     const basicDialog = inject("basicDialog");
+    var gender = ref("1");
 
     var field_all = reactive({
         account:ref(new widgetModule('帳號','account')),
@@ -84,6 +94,7 @@ export default defineComponent({
       var myUserData = store.state.login.userDetail ;
       field_all['account']['value'] = myUserData.account ;
       field_all['introduce']['value'] = myUserData.introduce ;
+      gender.value = myUserData.gender ;
 
 
     });
@@ -172,7 +183,8 @@ export default defineComponent({
       editBtn,
       imgUpload,
       imgDelete,
-      imageUrl
+      imageUrl,
+      gender
     };
   },
 });
@@ -210,6 +222,11 @@ export default defineComponent({
   .information .class_img_btn{
     width: 100px;
     margin:10px !important;
+  }
+
+  /* radio */
+  .information .radioStyle label{
+    margin-left:10px;
   }
 
 </style>
