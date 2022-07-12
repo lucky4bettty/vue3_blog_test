@@ -20,6 +20,8 @@ import InputWidget from "@/views/widget/dataWidgets/InputWidget.vue";
 import {widgetModule} from "@/js/module/widgetModule.js"
 import {sign_in_api} from "@/js/api/getData.js"
 import router from "@/router/index.js";
+import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
+
 
 
 
@@ -32,6 +34,8 @@ export default {
   props: {
   },
     setup(props, {emit}) {
+    const basicDialog = inject("basicDialog");
+
 
     const field_all = reactive({
         name: ref(new widgetModule('名稱','name')),

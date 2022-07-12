@@ -40,6 +40,7 @@ import store from "@/store/index.js";
 
 
 
+
 export default {
   name: "Login_sign",
   components:{
@@ -97,6 +98,25 @@ export default {
 
     //登入
     const loginBtn = async()=>{
+
+    // //測試用
+    // let postData = {
+    //     "txid":"sign_in",
+    //     "data":{
+    //         "account": "kevin_lin@gamail.com",
+    //         "password": "k1"
+    //     }
+    // }
+
+    // axios.post('/api', postData)
+    // .then((res) =>{
+    //     console.log(res);
+    // }).
+    // catch((err) =>{
+    //     console.log(err, 'error')
+    // })
+
+    //     return ; //----------
         
         // 登入api
         var req = { 
@@ -106,7 +126,7 @@ export default {
         
         let res = await login_api(JSON.parse(JSON.stringify(req)));
 
-        if (res instanceof Error) {
+        if (res instanceof Error) { 
            return showErrDialog(basicDialog, res.toString());
 
         }
@@ -118,17 +138,13 @@ export default {
         
         let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
 
+
         if (res_member instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
         }
 
         store.dispatch("login/put_userdDetail", res_member)
 
-        // let storage = new Storage();
-        // storage.setItem({
-        //         name:"vue3_blog_account",
-        //         value:"前端林三哥"
-        // })
 
         router.push('/member/information')
     }
