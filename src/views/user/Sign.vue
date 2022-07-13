@@ -42,7 +42,6 @@ export default {
         account:ref(new widgetModule('帳號','account')),
         password: ref(new widgetModule('密碼','password')),
         password_recheck: ref(new widgetModule('密碼(第二次確認)','password_recheck')),
-        mail: ref(new widgetModule('信箱','mail')),
         phone: ref(new widgetModule('電話','phone')),
     })
 
@@ -101,6 +100,23 @@ export default {
 
     //註冊
     const signUp = async() =>{
+        // 全部檢核
+        for(var fieldName in field_all){
+            check(fieldName,field_all[fieldName]['value']);
+        }
+
+        // 檢核是否通過
+        var isPass = true ;
+        for(var fieldName in field_all){
+            if(field_all[fieldName]['errMsg'] !== ''){
+                isPass = false ;
+            }
+        }
+
+        if(!isPass){
+            return ;
+        }
+
         var req = {
             "account": field_all['account']['value'],
             "password": field_all['password']['value'],

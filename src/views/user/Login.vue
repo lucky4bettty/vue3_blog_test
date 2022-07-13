@@ -99,6 +99,23 @@ export default {
     //登入
     const loginBtn = async()=>{
 
+        // 全部檢核
+        for(var fieldName in field_all){
+            check(fieldName,field_all[fieldName]['value']);
+        }
+
+        // 檢核是否通過
+        var isPass = true ;
+        for(var fieldName in field_all){
+            if(field_all[fieldName]['errMsg'] !== ''){
+                isPass = false ;
+            }
+        }
+
+        if(!isPass){
+            return ;
+        }
+
         
         // 登入api
         var req = { 
