@@ -99,29 +99,11 @@ export default {
     //登入
     const loginBtn = async()=>{
 
-    // //測試用
-    // let postData = {
-    //     "txid":"sign_in",
-    //     "data":{
-    //         "account": "kevin_lin@gamail.com",
-    //         "password": "k1"
-    //     }
-    // }
-
-    // axios.post('/api', postData)
-    // .then((res) =>{
-    //     console.log(res);
-    // }).
-    // catch((err) =>{
-    //     console.log(err, 'error')
-    // })
-
-    //     return ; //----------
         
         // 登入api
         var req = { 
-            "account": field_all['account'],
-            "password": field_all['password']
+            "account": field_all['account']['value'],
+            "password": field_all['password']['value']
         } ;
         
         let res = await login_api(JSON.parse(JSON.stringify(req)));

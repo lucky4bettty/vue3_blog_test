@@ -15,12 +15,14 @@ export const apiUtil = async (path, data = {}, method = 'post', useLocalJson = f
     } 
     
     var load = loadingView();
-    console.log('request data');
-    console.log(data);
+
     var passData = {
-      "txid":"sign_in",
+      "txid":path,
       "data":data
     }
+    console.log('request data');
+    console.log(passData);
+
     var result = await axios
     [method]('/api', passData)
     .then(function(res) {

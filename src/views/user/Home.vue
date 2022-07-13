@@ -48,7 +48,7 @@ export default {
     OneData,
   },
   setup() {
-
+    const basicDialog = inject("basicDialog");
     var currentPage = ref(1)
     var pc_dataPage = ref(30)
     var pageData ; // 本頁的所有資料
@@ -77,7 +77,7 @@ export default {
       return store.state.nowRoute.path;
     });
 
-        // 切路由
+    // 切路由
     watch(showPage, (path) => {
       var pathlist = path.split('/');
       pathlist.shift() ;
@@ -90,7 +90,9 @@ export default {
       pageData.search_condition.pageNow = '1' ;
       currentPage.value = 1 ;
 
-      pageData.search() ;
+      if(store.state.nowRoute.pathName == 'Home'){ // 若路由為Home 才要重新查詢
+        pageData.search() ;
+      }
 
 
 
@@ -104,7 +106,7 @@ export default {
       this.showhData=[], // 頁面show出來的資料
       this.search_condition={// 查詢條件
         'cate':'',
-        'title':'',
+        // 'title':'', 
         'pageNow':'1',
         'pageSize':'20'
       }, 

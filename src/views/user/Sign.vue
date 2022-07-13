@@ -73,11 +73,13 @@ export default {
                 if(val == ""){
                     field_all[fieldName]['errMsg'] = "此欄位不得為空";
                 }
+                ckeck_passWord_same();
                 break;
             case "password_recheck":
                 if(val == ""){
                     field_all[fieldName]['errMsg'] = "此欄位不得為空";
                 }
+                ckeck_passWord_same();
                 break;
             case "mail":
                 if(val == ""){
@@ -86,6 +88,14 @@ export default {
                 break;  
             default:
               console.log(`無對應規則`);
+        }
+    }
+
+    function ckeck_passWord_same(){
+        if(field_all['password']['value'] !== '' && field_all['password_recheck']['value'] !==''){
+            if(field_all['password']['value'] !== field_all['password_recheck']['value']){
+                field_all['password_recheck']['errMsg'] = '密碼與密碼(第二次確認)需相同';
+            }
         }
     }
 
