@@ -3,7 +3,7 @@ import {Storage}from '@/js/localStorage.js'
 export default {
     namespaced: true, // !!!!一定要加
     state: {
-        memberToken: '',
+        memberToken: null,
         userDetail:{
             "result": "0",
             "message": "執行成功",
@@ -35,5 +35,10 @@ export default {
         },
 
     },
+    getters: {
+        getUserToken: (state) => {
+            return state.memberToken;
+        },
+    }
 
 }

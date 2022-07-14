@@ -103,7 +103,7 @@ export default defineComponent({
     // 儲存
     const editBtn = async()=>{
       var req = {
-        "memberToken": "toooken",
+        "memberToken": store.getters["login/getUserToken"],
         "account": field_all['account']['value'],
         "password": field_all['password']['value'],
         "oldPassword": field_all['oldPassword']['value']

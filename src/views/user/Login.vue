@@ -130,6 +130,9 @@ export default {
 
         }
 
+        store.dispatch("login/put_memberToken", res.memberToken);
+
+
         // 取得個人資料api
         var req_member = { 
             "memberToken": res.memberToken
