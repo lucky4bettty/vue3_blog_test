@@ -38,6 +38,9 @@
     <span>新密碼：</span>
     <el-input v-model="field_all['password']['value']" placeholder=""></el-input>
 
+    <span>名稱：</span>
+    <el-input v-model="field_all['name']['value']" placeholder=""></el-input>
+
     <!-- 性別 -->
     <span>性別：</span>
     <div>
@@ -86,6 +89,7 @@ export default defineComponent({
         account:ref(new widgetModule('帳號','account')),
         password: ref(new widgetModule('密碼','password')),
         oldPassword: ref(new widgetModule('舊密碼','oldPassword')),
+        name:ref(new widgetModule('名稱','name')),
         email:ref(new widgetModule('信箱','email')),
         introduce: ref(new widgetModule('介紹','introduce')),
     });
@@ -94,6 +98,7 @@ export default defineComponent({
       var myUserData = store.state.login.userDetail ;
       field_all['account']['value'] = myUserData.account ;
       field_all['introduce']['value'] = myUserData.introduce ;
+      field_all['name']['value'] = myUserData.name ;
       gender.value = myUserData.gender ;
 
 

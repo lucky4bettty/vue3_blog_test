@@ -28,10 +28,10 @@ export default {
     },
     actions: {
         put_memberToken(context ,memberToken){
-            context.commit('CHANGEVAL_MEMBERYOKEN',memberToken) // 在更新狀態...錯誤訊息之類的??
+            context.commit('CHANGEVAL_MEMBERYOKEN',memberToken) 
         },
         put_userdDetail(context ,data){
-            context.commit('CHANGEVAL_USERDETAIL',data) // 在更新狀態...錯誤訊息之類的??
+            context.commit('CHANGEVAL_USERDETAIL',data) 
         },
 
     },
@@ -39,6 +39,9 @@ export default {
         getUserToken: (state) => {
             return state.memberToken;
         },
+        getUserDetail: (state) => {
+            return state.userDetail;
+        }
     }
 
 }

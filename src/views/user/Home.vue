@@ -59,10 +59,12 @@ export default {
 
     onMounted(() => {
       pageData= new PageData() ;
-      pageData.search_condition.cate = route.params.type?route.params.type:'';
-      // title.value = pageData.search_condition.cate ; 
+      if(route.params.type !== ''){
+        pageData.search_condition.cate = route.params.type?route.params.type:'';
 
-      // pageData.search() ; // 測試用先隱藏
+      }
+
+      pageData.search() ; 
 
 
     })
@@ -99,7 +101,7 @@ export default {
       pathlist.shift() ;
       var nowTheme = pathlist[0] !== 'null'?pathlist[0] :'';
       var nowTitle= pathlist.length > 1 ?pathlist[1]: '';
-      
+
       var getTitle= cate.value.filter(function(item, index, array){
         return item.id == pathlist[0]; 
       });
@@ -134,10 +136,15 @@ export default {
 
 
     PageData.prototype.search =async function (){
-      var self = this;
-      var req = self.search_condition;
+      var vm = this;
+      var req = vm.search_condition;
+      console.log('查詢結果req');
+      console.log(req)
 
       let res = await article_list_api(JSON.parse(JSON.stringify(req)));
+
+      console.log('查詢結果res');
+      console.log(res)
 
       if (res instanceof Error) {
         return showErrDialog(basicDialog, res.toString());

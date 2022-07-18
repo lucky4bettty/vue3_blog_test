@@ -21,6 +21,9 @@
     <span class="cont">帳號：</span>
     {{account}}
 
+    <span class="cont">名稱：</span>
+    {{name}}
+
     <!-- 性別 -->
     <span class="cont">性別：</span>
     <div>
@@ -56,16 +59,16 @@ export default defineComponent({
     var account = ref("");
     var email = ref("");
     var gender = ref("1");
+    var name = ref("")
     const imageUrl = ref('');
 
     
     onMounted(() => {
-      // console.log('取得帳號');
-      // console.log(store.state.login.userDetail) ;
       var myUserData = store.state.login.userDetail ;
       textarea.value = myUserData.introduce ;
       account.value = myUserData.account ;
       gender.value = myUserData.gender ;
+      name.value = myUserData.name ;
 
     });
 
@@ -80,6 +83,7 @@ export default defineComponent({
       account,
       email,
       gender,
+      name,
       editBtn,
       imageUrl
     };

@@ -22,6 +22,8 @@
 import OneData from "@/views/widget/OneData.vue";
 import { ref, defineComponent, onMounted,watch,inject} from "vue";
 import {article_list_api} from "@/js/api/getData.js"
+import store from "@/store/index.js";
+
 
 export default {
   name: "MyArticle",
@@ -36,9 +38,11 @@ export default {
 
     
     onMounted(async () => {
+
+
       var req = { 
-        "memberToken": "toooken",
-        "author": "kevin_lin@gamail.com"
+        "memberToken": store.getters["login/getUserToken"],
+        "author": store.getters["login/getUserDetail"].name
       };
 
       let res = await article_list_api(JSON.parse(JSON.stringify(req)));
