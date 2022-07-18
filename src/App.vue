@@ -28,7 +28,7 @@
       
       <!-- 左邊分類 -->
       <ul class="navbar_left d-flex">
-        <li v-for="item in theme" :class="{ activeNav: navbarIsActive.includes(item.type)}" :key="item.type" @click="clickNavTheme(item.type)">{{item.title}}</li>
+        <li v-for="item in cate" :class="{ activeNav: navbarIsActive.includes(item.id)}" :key="item.id" @click="clickNavTheme(item.id)">{{item.name}}</li>
         <!-- <li class="activeNav" ><router-link to="/">主題一</router-link></li>
         <li><router-link to="/">主題二</router-link></li> -->
       </ul>
@@ -88,7 +88,7 @@
 import { ref, defineComponent, onMounted,watch,inject,reactive , computed} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/store/index.js";
-import {theme} from "@/js/utils/theme.js"
+// import {theme} from "@/js/utils/theme.js"
 import router from "@/router/index.js";
 
 export default {
@@ -99,8 +99,20 @@ export default {
   setup(props, {emit}) {
 
     onMounted(() => {
-      
+      store.dispatch("commonData/cata_get");
     });
+
+    const cate = ref([]);
+
+    // 分類
+    const catagory = computed(() => {
+      return store.state.commonData.cate;
+    });
+
+    //分類載入
+    watch(catagory, (nowCate) => {
+      cate.value = nowCate ;
+    })
 
 
     //---------查詢相關----------
@@ -129,6 +141,8 @@ export default {
     
     // 目前route
     const showPage = computed(() => {
+      console.log('目前route')
+      console.log(store.state.commonData.cate);
       return store.state.nowRoute.path;
     });
 
@@ -147,9 +161,9 @@ export default {
       function isMemberPage(){
         if(path ==="/"){ return false }
         var isMember = true ;
-        theme.forEach(element => {
+        cate.value.forEach(element => {
           //debugger ;
-          if(path ===`/${element.type}`){
+          if(path ===`/${element.id}`){
             isMember = false ;
           }
         });
@@ -180,7 +194,7 @@ export default {
       search_input,
       showSearch,
       handleClose,
-      theme,
+      cate,
       clickNavTheme,
       navbarIsActive,
       showPage,

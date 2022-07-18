@@ -29,3 +29,6 @@ export const save_article_api = (data) => apiUtil('save_article', data , 'post',
 //文章回覆服務
 export const reply_article_api = (data) => apiUtil('reply_article', data , 'post', false);
 
+//文章文章類別服務
+export const article_cate_api = (data) => apiUtil('article_cate', data , 'post', false);
+
