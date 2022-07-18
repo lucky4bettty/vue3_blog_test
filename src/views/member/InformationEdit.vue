@@ -113,6 +113,8 @@ export default defineComponent({
         "password": field_all['password']['value'],
         "oldPassword": field_all['oldPassword']['value'],
         "gender": gender.value,
+        "name":field_all['name']['value'],
+        "intro":field_all['introduce']['value'],
       }
       if(imageUrl.value){ // 圖檔轉為base64
 					const img = await getBase64Image(imageUrl.value).then(res=>{

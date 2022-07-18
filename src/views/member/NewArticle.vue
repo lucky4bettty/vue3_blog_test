@@ -17,9 +17,9 @@
     <el-select v-model="catagory" placeholder="Select">
       <el-option
         v-for="item in catagory_option"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id"
       />
     </el-select>
   </div>
@@ -47,6 +47,7 @@ import { showErrDialog,showDialog } from "@/js/utils/Utils.js";
 import { DialogModel } from "@/js/utils/Model.js";
 import {save_article_api} from "@/js/api/getData.js"
 import router from "@/router/index.js";
+import store from "@/store/index.js";
 
 export default {
   name: "NewArticle",
@@ -56,9 +57,7 @@ export default {
   setup(props, {emit}) {
     const basicDialog = inject("basicDialog");
     
-    onMounted(() => {
 
-    });
 
     const state = reactive({
       content: '<p>編輯文章</p>',
@@ -71,7 +70,7 @@ export default {
     const title = ref('');
 
     const catagory = ref('');
-    const catagory_option = reactive([
+    const catagory_option = ref([
         {
           "label":"option1",
           "value":"v1"
@@ -82,17 +81,28 @@ export default {
         }
     ])
 
+    onMounted(() => {
+
+      catagory_option.value = store.state.commonData.cate;
+    });
+
     // 新增文章
     const add = async() =>{
       
       var req = {
-        "memberToken": "toooken",
+        "memberToken": store.getters["login/getUserToken"],
         "title": title.value,
-        "cate": catagory.value,
-        "content": state.content
+        "cateId": catagory.value,
+        "content":  state.content 
       }
 
+      console.log('---新增文章req---');
+      console.log(req)
+
       let res = await save_article_api(JSON.parse(JSON.stringify(req)));
+
+      console.log('---新增文章res---');
+      console.log(res)
 
       if (res instanceof Error) {
         return showErrDialog(basicDialog, res.toString());
@@ -100,13 +110,6 @@ export default {
 
       router.push('/member/myarticle')
 
-      // let dialogModel = new DialogModel();
-      // dialogModel.title = "失敗";
-      // dialogModel.content = `請重新登入`;
-      // dialogModel.doConfirm = function(){};
-      // dialogModel.clickCloseIcon = function(){};
-
-      // return showDialog(basicDialog, dialogModel);
 
     }
 
