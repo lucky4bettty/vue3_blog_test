@@ -118,6 +118,7 @@ export default {
         'content':'',
         'replyList':[]
       });
+      const basicDialog = inject("basicDialog");
 
     
     onMounted(() => {
@@ -134,7 +135,7 @@ export default {
     // 取文章細節
     async function getArticleDetail (){
         var req = {
-            "memberToken": "toooken",
+            "memberToken": store.getters["login/getUserToken"],
             "articleId": "2e71a354180000002496bd7d7b8d84ed"
         } ;
         

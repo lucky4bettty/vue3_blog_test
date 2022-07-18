@@ -55,14 +55,30 @@ export default {
     var showData = ref([]);
     var title = ref('');
     const route = useRoute();
+    const cate = ref([]);
 
     onMounted(() => {
       pageData= new PageData() ;
       pageData.search_condition.cate = route.params.type?route.params.type:'';
-      title.value = pageData.search_condition.cate ;
-      pageData.search() ;
+      // title.value = pageData.search_condition.cate ; 
+
+      // pageData.search() ; // 測試用先隱藏
 
 
+    })
+
+    // 分類
+    const catagory = computed(() => {
+      return store.state.commonData.cate;
+    });
+
+    //分類載入
+    watch(catagory, (nowCate) => {
+      cate.value = nowCate ;
+      var getTitle= nowCate.filter(function(item, index, array){
+        return item.id == pageData.search_condition.cate;
+      });
+      title.value = getTitle.length == 0 ?'':getTitle[0].name ;
     })
 
     // 切換頁數
@@ -83,7 +99,11 @@ export default {
       pathlist.shift() ;
       var nowTheme = pathlist[0] !== 'null'?pathlist[0] :'';
       var nowTitle= pathlist.length > 1 ?pathlist[1]: '';
-      title.value = pathlist[0] !== 'null'?pathlist[0] :'' ;
+      
+      var getTitle= cate.value.filter(function(item, index, array){
+        return item.id == pathlist[0]; 
+      });
+      title.value = getTitle.length == 0 ?'':getTitle[0].name ;
 
       pageData.search_condition.cate = nowTheme;
       pageData.search_condition.title = nowTitle ;
@@ -105,8 +125,7 @@ export default {
     var PageData = function (o) {
       this.showhData=[], // 頁面show出來的資料
       this.search_condition={// 查詢條件
-        'cate':'',
-        // 'title':'', 
+        // 'cate':'',
         'pageNow':'1',
         'pageSize':'20'
       }, 

@@ -106,7 +106,8 @@ export default defineComponent({
         "memberToken": store.getters["login/getUserToken"],
         "account": field_all['account']['value'],
         "password": field_all['password']['value'],
-        "oldPassword": field_all['oldPassword']['value']
+        "oldPassword": field_all['oldPassword']['value'],
+        "gender": gender.value,
       }
       if(imageUrl.value){ // 圖檔轉為base64
 					const img = await getBase64Image(imageUrl.value).then(res=>{

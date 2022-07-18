@@ -8,10 +8,7 @@ export default {
 
     mutations: {
         CATA_GET(state , payload){
-
             state.cate=payload ;
-            console.log('????')
-            console.log(state.cata)
         },
     },
     actions: {
@@ -25,14 +22,8 @@ export default {
                 if (res instanceof Error) {
                    return showErrDialog(basicDialog, res.toString());
                 }
-
-                //---以下測試用---
-                var cata =  [
-                    {"id":"1","name":"一類"},
-                    {"id":"2","name":"二類"}
-                ]
                     
-                context.commit('CATA_GET',cata) // 在更新狀態...錯誤訊息之類的??
+                context.commit('CATA_GET',res.cateList) 
 
 
             }
