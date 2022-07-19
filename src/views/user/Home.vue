@@ -50,7 +50,7 @@ export default {
   setup() {
     const basicDialog = inject("basicDialog");
     var currentPage = ref(1)
-    var pc_dataPage = ref(30)
+    var pc_dataPage = ref(0)
     var pageData ; // 本頁的所有資料
     var showData = ref([]);
     var title = ref('');
@@ -151,6 +151,7 @@ export default {
       }
 
       showData.value = res.articleList ;
+      pc_dataPage = res.articleList.length ;
 
     }
 

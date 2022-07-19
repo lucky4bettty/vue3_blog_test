@@ -37,7 +37,7 @@
     {{email}} -->
 
     <span class="cont">介紹：</span>
-    {{textarea}}
+    {{intro}}
 
 
 
@@ -59,7 +59,8 @@ export default defineComponent({
     var account = ref("");
     var email = ref("");
     var gender = ref("1");
-    var name = ref("")
+    var name = ref("");
+    var intro = ref("");
     const imageUrl = ref('');
 
     
@@ -69,6 +70,7 @@ export default defineComponent({
       account.value = myUserData.account ;
       gender.value = myUserData.gender ;
       name.value = myUserData.name ;
+      intro.value = myUserData.intro;
 
     });
 
@@ -84,6 +86,7 @@ export default defineComponent({
       email,
       gender,
       name,
+      intro,
       editBtn,
       imageUrl
     };

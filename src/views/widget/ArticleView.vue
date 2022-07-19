@@ -99,6 +99,7 @@ import Reply from "@/views/widget/Reply.vue";
 import ReplyShow from "@/views/widget/ReplyShow.vue";
 import {article_detail_api} from "@/js/api/getData.js"
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
+import store from "@/store/index.js";
 
 
 export default {
@@ -110,7 +111,7 @@ export default {
   setup(props, {emit}) {
       const route = useRoute();
       const router = useRouter();
-      var articleId ; // 文章id
+      var articleId = ref('') ; // 文章id
       var showData = ref({
         'author':'',
         'creatTime':'',
@@ -122,7 +123,7 @@ export default {
 
     
     onMounted(() => {
-        articleId = route.params.id ;
+        articleId.value = route.params.id ;
         getArticleDetail() ;
         
     });
@@ -136,7 +137,7 @@ export default {
     async function getArticleDetail (){
         var req = {
             "memberToken": store.getters["login/getUserToken"],
-            "articleId": "2e71a354180000002496bd7d7b8d84ed"
+            "articleId": articleId.value
         } ;
         
         let res = await article_detail_api(JSON.parse(JSON.stringify(req)));
@@ -144,6 +145,8 @@ export default {
         if (res instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
         }
+        console.log('---文章細節---');
+        console.log(res)
         showData.value = res.article ;
     }
     

@@ -26,7 +26,7 @@
                   {{props.onedata.title}}
                   </div>
                 <span class="article_author">
-                  {{props.onedata.author}}．<span v-timeFormat="props.onedata.creatTime">{{props.onedata.creatTime}}</span>
+                  {{props.onedata.author}}．<span v-timeFormat="props.onedata.createTime">{{props.onedata.createTime}}</span>
                 </span>
               </div>
             </div>
@@ -59,7 +59,7 @@ export default {
           default:""
         },
         //發布日期
-        creatTime:{
+        createTime:{
           type:String,
           default:""
         },
@@ -73,13 +73,8 @@ export default {
           type:Number,
           default:0
         },
-        //id
-        id:{
-          type:String,
-          default:""
-        },
         //文章id
-        "articleId":{
+        id:{
           type:String,
           default:""
         }
@@ -102,8 +97,8 @@ export default {
 
     const goDetail = async ()=>{
       if(!props.canedit){
-        console.log(props.onedata.articleId)
-        var url = `/member/articleview/${props.onedata.articleId}`;
+        console.log(props.onedata.id)
+        var url = `/member/articleview/${props.onedata.id}`;
         router.push(url);
       }else{
         console.log('連去編輯頁')

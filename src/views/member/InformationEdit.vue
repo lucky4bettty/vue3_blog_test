@@ -65,7 +65,7 @@
 
 <script>
 import { ref, defineComponent, onMounted,watch,inject ,reactive} from "vue";
-import {member_edit_api} from "@/js/api/getData.js"
+import {member_edit_api,member_info_api} from "@/js/api/getData.js"
 import router from "@/router/index.js";
 import { showErrDialog ,showDialog } from "@/js/utils/Utils.js";
 import InputWidget from "@/views/widget/dataWidgets/InputWidget.vue";
@@ -107,6 +107,7 @@ export default defineComponent({
 
     // 儲存
     const editBtn = async()=>{
+      // －－－更新資料
       var req = {
         "memberToken": store.getters["login/getUserToken"],
         "account": field_all['account']['value'],
@@ -123,15 +124,26 @@ export default defineComponent({
 					})
       }
 
-
-        
         let res = await member_edit_api(JSON.parse(JSON.stringify(req)));
 
 
         if (res instanceof Error) {
            return showErrDialog(basicDialog, res.toString());
-
         }
+
+        // －－－取得個人資料api
+        var req_member = { 
+            "memberToken": store.getters["login/getUserToken"]
+        } ;
+        
+        let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
+
+
+        if (res_member instanceof Error) {
+           return showErrDialog(basicDialog, res.toString());
+        }
+
+        store.dispatch("login/put_userdDetail", res_member)
 
         router.push('/member/information')
 

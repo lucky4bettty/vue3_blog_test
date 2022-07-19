@@ -18,6 +18,8 @@ import { watch, onMounted, computed, ref, inject } from "vue";
 import {reply_article_api} from "@/js/api/getData.js"
 import { DialogModel } from "@/js/utils/Model.js";
 import { showErrDialog, showDialog } from "@/js/utils/Utils.js";
+import store from "@/store/index.js";
+
 
 
 
@@ -73,16 +75,20 @@ export default {
     //回覆按下送出
     const replySubmit = async () =>{
         // console.log(myReply.value)
+        if(store.getters["login/getUserToken"] == null){ // 若無登入token 需登入
+            return showErrDialog(basicDialog, '請先登入才能回復');
+        }
+
         var req ;
         if(props.submitType ==="article"){ // 要回覆的為文章
             req = {
-                "memberToken": "toooken",
+                "memberToken": store.getters["login/getUserToken"],
                 "articleId": props.onedata.id,
                 "content": myReply.value,
             }
         }else{ // 要回覆的為回覆
             req = {
-                "memberToken": "toooken",
+                "memberToken": store.getters["login/getUserToken"],
                 "articleId": props.onedata.id,
                 "content": myReply.value,
                 "replyId":props.replydata.id
