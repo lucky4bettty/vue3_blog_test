@@ -122,6 +122,7 @@ export default defineComponent({
 							var dataBase64 = res.base64.replace(/^data:.*?;base64,/, "");
 							return dataBase64;
 					})
+          req.image = img ;
       }
 
         let res = await member_edit_api(JSON.parse(JSON.stringify(req)));

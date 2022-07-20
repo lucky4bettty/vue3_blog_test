@@ -107,8 +107,12 @@ export default {
       });
       title.value = getTitle.length == 0 ?'':getTitle[0].name ;
 
-      pageData.search_condition.cate = nowTheme;
-      pageData.search_condition.title = nowTitle ;
+      pageData.search_condition.cateId = nowTheme;
+
+      if(nowTitle !== ''){
+        pageData.search_condition.title = nowTitle ;
+      }
+
       pageData.search_condition.pageNow = '1' ;
       currentPage.value = 1 ;
 
