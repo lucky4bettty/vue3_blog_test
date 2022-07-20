@@ -45,8 +45,8 @@ import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
 import Vue3Tinymce from '@jsdawn/vue3-tinymce';
 import { showErrDialog,showDialog } from "@/js/utils/Utils.js";
 import { DialogModel } from "@/js/utils/Model.js";
-import {save_article_api} from "@/js/api/getData.js"
-import router from "@/router/index.js";
+import {save_article_api,article_detail_api} from "@/js/api/getData.js"
+import { useRoute, useRouter } from "vue-router";
 import store from "@/store/index.js";
 
 export default {
@@ -56,7 +56,8 @@ export default {
   },
   setup(props, {emit}) {
     const basicDialog = inject("basicDialog");
-    
+    const route = useRoute();
+    var articleId = ref('') ; // 文章id
 
 
     const state = reactive({
@@ -70,19 +71,13 @@ export default {
     const title = ref('');
 
     const catagory = ref('');
-    const catagory_option = ref([
-        {
-          "label":"option1",
-          "value":"v1"
-        },
-        {
-          "label":"option2",
-          "value":"v2"
-        }
-    ])
+    const catagory_option = ref([])
 
     onMounted(() => {
-
+      articleId.value = route.params.id ;
+      if(articleId.value !== ''){ //  當有文章id時 , 查詢文章細節
+          getArticleDetail() ;
+      }
       catagory_option.value = store.state.commonData.cate;
     });
 
@@ -94,6 +89,10 @@ export default {
         "title": title.value,
         "cateId": catagory.value,
         "content":  state.content 
+      }
+
+      if(articleId.value !== ''){// 為編輯
+        req.articleId = articleId.value ;
       }
 
       console.log('---新增文章req---');
@@ -109,6 +108,27 @@ export default {
       }
 
       router.push('/member/myarticle')
+
+
+    }
+
+    // 取文章細節
+    async function getArticleDetail (){
+        var req = {
+            "memberToken": store.getters["login/getUserToken"],
+            "articleId": articleId.value
+        } ;
+        
+        let res = await article_detail_api(JSON.parse(JSON.stringify(req)));
+
+        if (res instanceof Error) {
+           return showErrDialog(basicDialog, res.toString());
+        }
+        console.log('---文章細節---');
+        console.log(res)
+        catagory.value = res.article.cateId ;
+        title.value = res.article.title ;
+        state.content = res.article.content ;
 
 
     }

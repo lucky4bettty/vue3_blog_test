@@ -83,13 +83,13 @@ export default {
         if(props.submitType ==="article"){ // 要回覆的為文章
             req = {
                 "memberToken": store.getters["login/getUserToken"],
-                "articleId": props.onedata.id,
+                "articleId": props.onedata.articleId,
                 "content": myReply.value,
             }
         }else{ // 要回覆的為回覆
             req = {
                 "memberToken": store.getters["login/getUserToken"],
-                "articleId": props.onedata.id,
+                "articleId": props.onedata.articleId,
                 "content": myReply.value,
                 "replyId":props.replydata.id
             }

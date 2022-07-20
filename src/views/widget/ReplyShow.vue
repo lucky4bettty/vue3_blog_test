@@ -58,6 +58,13 @@ export default {
     
     });
 
+    watch(() => [props.onedata], (nowV, oldV) => {
+        console.log('更新資料In ReplyShow')
+        allReply.value = props.onedata ;
+    }, {
+      deep: true
+    })
+
 
 
 

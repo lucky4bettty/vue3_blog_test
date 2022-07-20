@@ -42,10 +42,8 @@
 
 
     <!-- 留言 -->
-    <div class="reply_num">XX個回答</div>
+    <div class="reply_num">{{showData.replyList.length}}個回答</div>
     <div class="reply articleview_bg">
-        
-
         <div class="oneReply" v-for="(item ,index) in showData.replyList" :key="index">
             <!-- 標題 -->
             <div class="title_all">
@@ -72,12 +70,11 @@
             </div>
 
             <!-- 回覆框框_他人回覆 -->
-            <ReplyShow :onedata="item.replyList"></ReplyShow>
+            <ReplyShow :onedata="item.replyList" v-show="item.replyList.length !== 0"></ReplyShow>
 
             <!-- 回覆框框_我的回覆 -->
             <Reply :onedata="showData" :replydata="item" submitType="reply"></Reply>
         </div>
-
     </div>
     
     
@@ -119,6 +116,7 @@ export default {
         'content':'',
         'replyList':[]
       });
+      var replyList = ref([]);
       const basicDialog = inject("basicDialog");
 
     
@@ -148,6 +146,7 @@ export default {
         console.log('---文章細節---');
         console.log(res)
         showData.value = res.article ;
+        showData.value = res.article
     }
     
     // 回覆按下送出

@@ -74,7 +74,7 @@ export default {
           default:0
         },
         //文章id
-        id:{
+        articleId:{
           type:String,
           default:""
         }
@@ -97,11 +97,13 @@ export default {
 
     const goDetail = async ()=>{
       if(!props.canedit){
-        console.log(props.onedata.id)
-        var url = `/member/articleview/${props.onedata.id}`;
+        console.log(props.onedata.articleId)
+        var url = `/member/articleview/${props.onedata.articleId}`;
         router.push(url);
       }else{
         console.log('連去編輯頁')
+        var url = `/member/newArticle/${props.onedata.articleId}`;
+        router.push(url);
       }
 
     }

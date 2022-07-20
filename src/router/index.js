@@ -42,7 +42,7 @@ const routes = [
       import("@/views/member/MyArticle.vue"),
   },
   {
-    path: "/member/newArticle",
+    path: "/member/newArticle/:id?/",
     name: "NewArticle",
     component: () =>
       import("@/views/member/NewArticle.vue"),
