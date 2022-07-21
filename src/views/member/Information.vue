@@ -12,7 +12,7 @@
       <div class="title_img">
           <!-- <img src="@/images/my.jpeg" alt=""> -->
           <!-- 預設 -->
-          <img v-if="imageUrl==''" src="@/images/my.jpeg" alt="">
+          <img v-if="!imageUrl" src="@/images/my.jpeg" alt="">
           <!-- 上傳 -->
           <img v-else :src="imageUrl" alt="" class="customerImg mt-0">
       </div>
@@ -71,6 +71,15 @@ export default defineComponent({
       gender.value = myUserData.gender ;
       name.value = myUserData.name ;
       intro.value = myUserData.intro;
+
+      if (myUserData.image) {
+					const buffer = Buffer.from(myUserData.image, 'base64');
+					const blob = new Blob([buffer], {
+							type: "image/jpeg"
+					});
+					const img = URL.createObjectURL(blob);
+					imageUrl.value = img;
+			}
 
     });
 

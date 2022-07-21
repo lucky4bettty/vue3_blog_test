@@ -56,7 +56,6 @@
         
         <li :class="{ activeNav:(showPage=='information') }"><router-link to="/member/information">個人資料</router-link> </li>
         <li :class="{ activeNav:(showPage=='myarticle') }"><router-link to="/member/myarticle">我的文章</router-link></li>
-        <li><router-link to="/member/articleview">文章瀏覽(測試用)</router-link></li>
         
       </ul>
 

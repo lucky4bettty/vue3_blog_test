@@ -2,15 +2,15 @@
           <div class="article_one" @click="goDetail()">
             <!-- 內容 -->
             <div class="d-flex">
-              <!-- 收藏 -->
-              <div class="article_like">
+              <!-- 最愛功能 無ＡＰＩ先不做 -->
+              <!-- <div class="article_like">
                 <div class="num">
                   {{props.onedata.likeAmount}}
                 </div>
                 <div class="word">
                   like
                 </div>
-              </div>
+              </div> -->
               <!-- 回覆 -->
               <div class="article_reply">
                 <div class="num">

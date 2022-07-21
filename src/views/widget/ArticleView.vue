@@ -14,14 +14,15 @@
             標題：{{showData.title}}
         </div>
 
-        <div class="addlove">
+        <!-- 最愛功能 無ＡＰＩ先不做 -->
+        <!-- <div class="addlove">
             <div class="addloveIcon">
                                 
                     <img class="like-icon" src="@/images/heart-solid-red.svg" alt="">
                     <img class="like-icon" src="@/images/heart-regular-red.svg" alt="">            
 
             </div>  
-        </div>
+        </div> -->
 
 
         
