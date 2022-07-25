@@ -133,18 +133,18 @@ export default defineComponent({
         }
 
         // －－－取得個人資料api
-        var req_member = { 
-            "memberToken": store.getters["login/getUserToken"]
-        } ;
+        // var req_member = { 
+        //     "memberToken": store.getters["login/getUserToken"]
+        // } ;
         
-        let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
+        // let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
 
 
-        if (res_member instanceof Error) {
-           return showErrDialog(basicDialog, res.toString());
-        }
+        // if (res_member instanceof Error) {
+        //    return showErrDialog(basicDialog, res.toString());
+        // }
 
-        store.dispatch("login/put_userdDetail", res_member)
+        store.dispatch("login/put_userdDetail", store.getters["login/getUserToken"])
 
         router.push('/member/information')
 

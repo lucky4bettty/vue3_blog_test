@@ -134,18 +134,18 @@ export default {
 
 
         // 取得個人資料api
-        var req_member = { 
-            "memberToken": res.memberToken
-        } ;
+        // var req_member = { 
+        //     "memberToken": res.memberToken
+        // } ;
         
-        let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
+        // let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
 
 
-        if (res_member instanceof Error) {
-           return showErrDialog(basicDialog, res.toString());
-        }
+        // if (res_member instanceof Error) {
+        //    return showErrDialog(basicDialog, res.toString());
+        // }
 
-        store.dispatch("login/put_userdDetail", res_member)
+        store.dispatch("login/put_userdDetail", res.memberToken)
 
 
         router.push('/member/information')

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/user/Home.vue";
 import store from "@/store/index.js";
+import {needLoginPage} from '@/js/utils/commonData';
 
 const routes = [
   {
@@ -53,15 +54,12 @@ const routes = [
     component: () =>
       import("@/views/widget/ArticleView.vue"),
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
+  {
+    path: "/nologin",
+    name: "NoLogin",
+    component: () =>
+      import("@/views/user/NoLogin.vue"),
+  },
 ];
 
 const router = createRouter({
@@ -74,7 +72,22 @@ router.beforeEach((to, from, next) => {
 
   store.dispatch("nowRoute/switchPage" , to) // 存url進store
 
-  next();
+  var needLoginPage_isPass = needLoginPage.some(function(item, index, array){
+    return (to.fullPath).includes(item);
+  })
+
+  if(needLoginPage_isPass && !store.getters["login/getUserIsLogin"]){ 
+    console.log('要登入才能進去')
+    store.dispatch("login/get_sessiontoken_relogin")
+    if(!store.getters["login/getUserIsLogin"]){
+      next({ name: 'NoLogin' });
+    }else{
+      next();
+    }
+  }else{
+    next();
+  }
+
 
 })
 
