@@ -10,7 +10,7 @@ module.exports = {
   // <!--所有 webpack-dev-server 的选项-->
   devServer: {
     // <!--端口号-->
-    port: process.env.port || 9627,
+    port: 9627,
     // <!--dev-server在服务器启动后打开默认浏览器-->
     open: true,
     // <!--出现编译器错误或警告时，在浏览器中显示全屏覆盖。-->
@@ -22,7 +22,7 @@ module.exports = {
     // 你需要在开发环境下将 API 请求代理到 API 服务器。-->
     proxy: {
       "/api": {
-        target: process.env.VUE_APP_BASE_API, // 要代理的API地址
+        target: process.env.VUE_APP_BASE_API,
         changeOrigin: true, // 允许跨域
         // <!--这里理解成用'/api'代替target里面的地址，后面组件中我们掉接口时直接用api代替-->
         // <!--比如我要调用'http://www.abc.com/user/add'，直接写'/api/user/add'即可'-->
