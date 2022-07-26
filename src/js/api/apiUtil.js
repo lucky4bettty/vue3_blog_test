@@ -4,7 +4,6 @@ import { watch, onMounted, computed, ref, inject } from "vue";
 
 
 
-
 export const apiUtil = async (path, data = {}, method = 'post', useLocalJson = false) => {
     const basicDialog = inject("basicDialog");
 
@@ -24,7 +23,7 @@ export const apiUtil = async (path, data = {}, method = 'post', useLocalJson = f
     console.log(passData);
 
     var result = await axios
-    [method]('/api', passData) 
+    [method](process.env.VUE_APP_BASE_API, passData) 
     .then(function(res) {
       console.log("apiUtils----正確ＭＳＧ")
       console.log(res)
