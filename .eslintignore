@@ -1,3 +1,4 @@
 src/*
 **/bootstrap-datepicker-tw-master/bootstrap-datepicker.js
 */vue.config.js
+*/api/proxy.js
