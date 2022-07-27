@@ -15,9 +15,11 @@ const {
   changeOrigin: true,
   pathRewrite: {
   // 通过路径重写，去除请求路径中的 `/api`
-  '^/api/': '/'
+  '^/api': ''
   }
   })(req, res)
   }
   // 參考以下教學
   // https://cloud.tencent.com/developer/article/1830950
+
+  // https://zhuanlan.zhihu.com/p/450039194
