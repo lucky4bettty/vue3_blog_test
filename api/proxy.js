@@ -6,6 +6,8 @@ const {
   let target = ''
   // 代理目标地址
   // xxxxx 替换为你跨域请求的服务器 如： http://baidu.com
+  console.log('proxy.js???')
+  console.log(req);
   if (req.url.startsWith('/api')) { //这里使用/api可能会与vercel serverless 的 api 路径冲突，根据接口进行调整
   target = process.env.VUE_APP_BASE_API //这里就是在vite中配置的一样
   }
