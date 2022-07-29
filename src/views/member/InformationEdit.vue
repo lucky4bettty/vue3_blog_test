@@ -10,9 +10,8 @@
 
     <div class="img_div">
       <div class="title_img">
-          <!-- <img src="@/images/my.jpeg" alt=""> -->
           <!-- 預設 -->
-          <img v-if="imageUrl==''" src="@/images/my.jpeg" alt="">
+          <img v-if="!imageUrl" src="@/images/my.jpeg" alt="">
           <!-- 上傳 -->
           <img v-else :src="imageUrl" alt="" class="customerImg mt-0">
       </div>
@@ -100,6 +99,14 @@ export default defineComponent({
       field_all['introduce']['value'] = myUserData.introduce ;
       field_all['name']['value'] = myUserData.name ;
       gender.value = myUserData.gender ;
+      if (myUserData.image) {
+				const buffer = Buffer.from(myUserData.image, 'base64');
+				const blob = new Blob([buffer], {
+						type: "image/jpeg"
+				});
+				const img = URL.createObjectURL(blob);
+				imageUrl.value = img;
+			}
 
 
     });
@@ -132,21 +139,11 @@ export default defineComponent({
            return showErrDialog(basicDialog, res.toString());
         }
 
-        // －－－取得個人資料api
-        // var req_member = { 
-        //     "memberToken": store.getters["login/getUserToken"]
-        // } ;
-        
-        // let res_member = await member_info_api(JSON.parse(JSON.stringify(req_member)));
 
+        store.dispatch("login/put_userdDetail", store.getters["login/getUserToken"]).then(()=>{
+          router.push('/member/information')
+        })
 
-        // if (res_member instanceof Error) {
-        //    return showErrDialog(basicDialog, res.toString());
-        // }
-
-        store.dispatch("login/put_userdDetail", store.getters["login/getUserToken"])
-
-        router.push('/member/information')
 
     }
 

@@ -17,7 +17,7 @@
       
       <div class="d-flex align-items-end">
         <router-link to="/member/information">
-          Hi , ＯＯＯ
+          {{greetWord}}
         </router-link>
       </div>
 
@@ -102,7 +102,6 @@ export default {
     });
 
     const cate = ref([]);
-
     // 分類
     const catagory = computed(() => {
       return store.state.commonData.cate;
@@ -111,6 +110,19 @@ export default {
     //分類載入
     watch(catagory, (nowCate) => {
       cate.value = nowCate ;
+    })
+
+    //打招呼文字
+    const greetWord = ref("") ; 
+    const greetWordStore = computed(() => {
+      return store.state.login.userDetail;
+    });
+    watch(greetWordStore, (userData) => {
+      if(userData == null){
+        greetWord.value = `` ;
+      }else{
+        greetWord.value = `Hi,${userData.name}` ;
+      }
     })
 
 
@@ -198,7 +210,8 @@ export default {
       navbarIsActive,
       showPage,
       MemberNav,
-      nextPage
+      nextPage,
+      greetWord
 
     };
   },
