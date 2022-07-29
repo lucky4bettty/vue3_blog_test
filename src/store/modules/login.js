@@ -15,7 +15,7 @@ export default {
         CHANGEVAL_MEMBERYOKEN(state , payload){
             state.memberToken=payload ;
             state.isLogin = true ;
-            sessionStorage.setItem("blog_token", payload);
+            localStorage.setItem("blog_token", payload)
         },
         CHANGEVAL_USERDETAIL(state , payload){
             state.userDetail=payload ;
@@ -45,7 +45,7 @@ export default {
         },
         get_sessiontoken_relogin(context){
             var vm = this ;
-            var old_session = sessionStorage.getItem("blog_token");
+            var old_session = localStorage.getItem("blog_token");
 
             if(old_session){ //old_session
                 context.commit('CHANGEVAL_MEMBERYOKEN',old_session) ;

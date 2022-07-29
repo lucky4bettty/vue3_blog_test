@@ -81,7 +81,7 @@ export default {
       catagory_option.value = store.state.commonData.cate;
     });
 
-    // 新增文章
+    // 新增文章 + 編輯
     const add = async() =>{
       
       var req = {
@@ -95,7 +95,7 @@ export default {
         req.articleId = articleId.value ;
       }
 
-      console.log('---新增文章req---');
+      console.log('---新增ＯＲ編輯文章req---');
       console.log(req)
 
       let res = await save_article_api(JSON.parse(JSON.stringify(req)));

@@ -76,14 +76,13 @@ router.beforeEach((to, from, next) => {
     return (to.fullPath).includes(item);
   })
 
+  if(!store.getters["login/getUserIsLogin"]){
+    store.dispatch("login/get_sessiontoken_relogin")
+  }
+
   if(needLoginPage_isPass && !store.getters["login/getUserIsLogin"]){ 
     console.log('要登入才能進去')
-    store.dispatch("login/get_sessiontoken_relogin")
-    if(!store.getters["login/getUserIsLogin"]){
-      next({ name: 'NoLogin' });
-    }else{
-      next();
-    }
+    next({ name: 'NoLogin' });
   }else{
     next();
   }
