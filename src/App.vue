@@ -34,16 +34,23 @@
       </ul>
       <!-- 右邊登入 + 查詢 -->
       <div class="navbar_right">
-        <div class="search_icon" :class="{ search_icon_active: showSearch }" >
-          <img @click="searchShow(true)" src="@/images/icon-search.svg" />
+        <!-- 登入 註冊 btn -->
+        <div class="navbar_right action_btn">
+          <div class="search_icon" :class="{ search_icon_active: showSearch }" >
+            <img @click="searchShow(true)" src="@/images/icon-search.svg" />
+          </div>
+          <div>
+            <span>
+              <router-link to="/login">登入 / 註冊</router-link>
+            </span>
+          </div>
         </div>
-
-        <div>
+        <!-- 登出 btn -->
+        <div class="navbar_right action_btn" @click="lougout">
           <span>
-            <router-link to="/login">登入 / 註冊</router-link>
+            <div>登出</div>
           </span>
         </div>
-        
 
       </div>
 
@@ -87,7 +94,6 @@
 import { ref, defineComponent, onMounted,watch,inject,reactive , computed} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/store/index.js";
-// import {theme} from "@/js/utils/theme.js"
 import router from "@/router/index.js";
 
 export default {
@@ -198,6 +204,11 @@ export default {
         router.push(url)
     }
 
+    // -----登出
+    const lougout = () =>{
+
+    }
+
 
     return {
       searchBtn,
@@ -211,7 +222,8 @@ export default {
       showPage,
       MemberNav,
       nextPage,
-      greetWord
+      greetWord,
+      lougout
 
     };
   },

@@ -82,11 +82,16 @@ ul , li {
         height:100%;
         display:flex;
         align-items: center;
+        padding-right:5px;
     }
 
     .navbar_right a{
         margin-left: 5px;
         color: white;
+    }
+
+    .action_btn:hover{
+        background-color: rgb(87, 136, 228);
     }
 }
 

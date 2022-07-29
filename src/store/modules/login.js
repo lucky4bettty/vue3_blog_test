@@ -51,6 +51,9 @@ export default {
                 context.commit('CHANGEVAL_MEMBERYOKEN',old_session) ;
                 vm.dispatch('login/put_userdDetail',old_session)
             }
+        },
+        logout(context){
+            localStorage.removeItem(key)
         }
 
     },
