@@ -7,7 +7,7 @@
 
       <div class="">
         <router-link to="/">
-        我是ＬＯＧＯ
+        我是ＬＯＧＯ 
           <!-- <img class="logo"
           src="@/images/logo.jpeg"/> -->
         </router-link>
