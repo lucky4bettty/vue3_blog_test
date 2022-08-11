@@ -26,7 +26,8 @@
 
   
 
-  <Vue3Tinymce v-model="state.content" :setting="state.setting" />
+  <!-- <Vue3Tinymce v-model="state.content" :setting="state.setting" /> -->
+  <Tinymce v-model:value="cont_val" />
 
   <div class="btnStyle">
     <el-button type="primary" class="" @click="add">
@@ -42,7 +43,8 @@
 <script>
 // 文字編輯器 ： https://juejin.cn/post/7012073370023886856
 import { ref, defineComponent, onMounted,watch,inject,reactive} from "vue";
-import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+// import Vue3Tinymce from '@jsdawn/vue3-tinymce';
+import Tinymce from "@/views/widget/Tinymce.vue";
 import { showErrDialog,showDialog } from "@/js/utils/Utils.js";
 import { DialogModel } from "@/js/utils/Model.js";
 import {save_article_api,article_detail_api} from "@/js/api/getData.js"
@@ -52,7 +54,8 @@ import store from "@/store/index.js";
 export default {
   name: "NewArticle",
   components: {
-    Vue3Tinymce
+    // Vue3Tinymce
+    Tinymce,
   },
   setup(props, {emit}) {
     const basicDialog = inject("basicDialog");
@@ -67,6 +70,8 @@ export default {
         height: 400, // editor 高度
       },
     });
+
+    const cont_val = ref(""); //編輯匡內容
 
     const title = ref('');
 
@@ -88,7 +93,7 @@ export default {
         "memberToken": store.getters["login/getUserToken"],
         "title": title.value,
         "cateId": catagory.value,
-        "content":  state.content 
+        "content":  cont_val.value
       }
 
       if(articleId.value !== ''){// 為編輯
@@ -128,7 +133,7 @@ export default {
         console.log(res)
         catagory.value = res.article.cateId ;
         title.value = res.article.title ;
-        state.content = res.article.content ;
+        cont_val.value = res.article.content ;
 
 
     }
@@ -140,7 +145,8 @@ export default {
       title,
       add,
       catagory,
-      catagory_option
+      catagory_option,
+      cont_val
 
     };
   },

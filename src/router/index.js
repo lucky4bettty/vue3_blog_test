@@ -60,6 +60,12 @@ const routes = [
     component: () =>
       import("@/views/user/NoLogin.vue"),
   },
+  {
+    path: "/test",
+    name: "Test",
+    component: () =>
+      import("@/views/test.vue"),
+  }
 ];
 
 const router = createRouter({
@@ -86,6 +92,8 @@ router.beforeEach((to, from, next) => {
   }else{
     next();
   }
+
+  // next();
 
 
 })
