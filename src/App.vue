@@ -27,11 +27,11 @@
     <div class="navbar" v-show="!MemberNav">
       
       <!-- 左邊分類 -->
-      <ul class="navbar_left d-flex">
+      <nav class="navbar_left d-flex">
         <li v-for="item in cate" :class="{ activeNav: navbarIsActive.includes(item.id)}" :key="item.id" @click="clickNavTheme(item.id)">{{item.name}}</li>
         <!-- <li class="activeNav" ><router-link to="/">主題一</router-link></li>
         <li><router-link to="/">主題二</router-link></li> -->
-      </ul>
+      </nav>
       <!-- 右邊登入 + 查詢 -->
       <div class="navbar_right">
         <!-- 登入 註冊 btn -->

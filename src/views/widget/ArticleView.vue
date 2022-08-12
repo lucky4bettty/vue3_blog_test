@@ -7,7 +7,7 @@
     <div class="articleview_bg">    
         <div class="myData">
             作者：{{showData.author}} 
-            <span class="time" v-timeFormat="showData.creatTime">{{showData.creatTime}}</span> 
+            <time class="time" v-timeFormat="showData.creatTime">{{showData.creatTime}}</time> 
         </div>
 
         <div class="myData">
@@ -27,9 +27,9 @@
 
         
         <!-- html 注入 -->
-        <div class="myHtml" v-html="showData.content">
+        <main class="myHtml" v-html="showData.content">
 
-        </div>
+        </main>
 
         <!-- 回覆框框 -->
         <Reply :onedata="showData" submitType="article"></Reply>
@@ -44,7 +44,7 @@
 
     <!-- 留言 -->
     <div class="reply_num">{{showData.replyList.length}}個回答</div>
-    <div class="reply articleview_bg">
+    <article class="reply articleview_bg">
         <div class="oneReply" v-for="(item ,index) in showData.replyList" :key="index">
             <!-- 標題 -->
             <div class="title_all">
@@ -76,7 +76,7 @@
             <!-- 回覆框框_我的回覆 -->
             <Reply :onedata="showData" :replydata="item" submitType="reply"></Reply>
         </div>
-    </div>
+    </article>
     
     
 

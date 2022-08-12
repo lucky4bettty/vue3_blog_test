@@ -127,7 +127,7 @@ export default {
         let res = await article_detail_api(JSON.parse(JSON.stringify(req)));
 
         if (res instanceof Error) {
-           return showErrDialog(basicDialog, res.toString());
+          return showErrDialog(basicDialog, res.toString());
         }
         console.log('---文章細節---');
         console.log(res)

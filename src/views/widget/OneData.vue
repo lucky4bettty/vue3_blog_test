@@ -26,7 +26,7 @@
                   {{props.onedata.title}}
                   </div>
                 <span class="article_author">
-                  {{props.onedata.author}}．<span v-timeFormat="props.onedata.createTime">{{props.onedata.createTime}}</span>
+                  {{props.onedata.author}}．<time v-timeFormat="props.onedata.createTime">{{props.onedata.createTime}}</time>
                 </span>
               </div>
             </div>
