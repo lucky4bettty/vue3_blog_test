@@ -64,7 +64,7 @@ const routes = [
     path: "/test",
     name: "Test",
     component: () =>
-      import("@/views/test.vue"),
+      import("@/views/testView/LoginTest.vue"),
   }
 ];
 
